@@ -1,0 +1,102 @@
+# 一些有用的 CSS 属性
+
+#### 多列布局（Multi-Column）
+
+```css
+.container {
+  column-count: 3; /* 浏览器自动分成 3 列 */
+}
+```
+
+#### 吸顶布局 position: sticky
+
+<img src="https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20211222103554994.png" alt="image-20211222103554994" style="zoom:50%;" align="left"/>
+
+ chrome >= 56
+
+#### 设置长宽比 aspect-ratio
+
+在实现这个属性之前，一般使用 padding-top 撑开元素的 hack 来实现。但是存在额外的计算开销。
+
+```css
+.container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+```
+
+- 如果同时设置了width 和 height 则该属性会被忽略，否责使用其中一个来计算另一个
+- 该属性的优先级非常低，元素会优先计算最小宽度/高度，然后再来满足此属性。可以手动将 min-width/height: 0; 让元素不再基于内容计算宽高以满足此属性。
+
+chrome >= 88
+
+#### 首屏渲染优化 content-visibility 
+
+基于CSS Containement（大多数浏览器支持）。在首屏渲染时，很多元素一开始是不可见的，不需要立刻渲染出来。通过该属性可以告诉浏览器这些信息
+
+css containement 四个属性：
+
+- `size`: 在计算该元素盒子大小的时候会忽略其子元素
+- `layout`: 元素的内部布局不受外部影响，同时该元素以及其内容也不会影响到上级
+- `style`: 声明同时会影响这个元素和其子孙元素的属性，都在这个元素的包含范围内
+- `paint`: 声明这个元素的子孙节点不会在它边缘外显示。如果一个元素在视窗外或因其他原因导致不可见，则同样保证它的子孙节点不会被显示。
+
+```css
+.container {
+  content-visibility: auto; /* 如果元素具有 auto 属性且没出现在屏幕上则不会立刻渲染它和它的子元素 */
+}
+```
+
+- visible - 默认值，正常渲染
+- hidden - 表现相当于 display: none; 跳过内容的渲染。
+
+chrome >= 85
+
+#### 混合模式 Blend Modes
+
+描述元素重叠时，颜色如何呈现
+
+```css
+h1 {
+	font-size: 100px;
+	color: #fff;
+	mix-blend-mode: difference;
+}
+```
+
+- `difference` - 取重叠部分颜色的差值；如白(255, 255, 255) - 黑(0, 0, 0) = 白，重叠的部分会变成白色
+
+- `darken` - 变暗
+
+- `lighten` - 变暗
+
+- `screen` - 滤色
+
+  ......
+
+#### 滚动捕捉
+
+ `scroll-snap-type` 属性，子元素的 `scroll-snap-align` 属
+
+- `scroll-snap-type:mandatory` 告诉浏览器，在用户停止滚动时，浏览器必须滚动到一个捕捉点。
+- `scroll-snap-align` 可以指定元素的哪一部分吸附到容器上，`start` 指的是元素的顶部边缘。如果你水平滚动，它指的是左边缘。`center` 和 `end` 属性值与此同理。
+
+#### 性能优化 will-change
+
+告知浏览器即将渲染的动画，让浏览器做好准备，提升渲染速度
+
+```js
+// 当鼠标移动到该元素上时给该元素设置 will-change 属性
+el.addEventListener('mouseenter', hintBrowser);
+// 当 CSS 动画结束后清除 will-change 属性
+el.addEventListener('animationEnd', removeHint);
+
+function hintBrowser() {
+  // 填写上那些你知道的，会在 CSS 动画中发生改变的 CSS 属性名们
+  this.style.willChange = 'transform, opacity';
+}
+function removeHint() {
+  this.style.willChange = 'auto';
+}
+```
+
