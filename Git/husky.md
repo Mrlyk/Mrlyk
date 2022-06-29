@@ -59,3 +59,24 @@ npx lint-staged # 执行 lint-staged
 npx eslint --fix src/**/*.js # 执行 eslint 格式化
 ```
 
+为了防止有的用户本地没有初始化 husky，一般我们还会在 package.json 的 `prepare`脚本中手动安装
+
+```json
+{
+  "scripts": {
+    "prepare": "npx husky install"
+  }
+}
+```
+
+
+
+## 其他说明
+
+#### package.json 中的 husky 配置？
+
+在 husky 更新到 6.0 后有破坏性的变更，不再支持以前那样在 package.json 中写配置的做法，而必须使用 sh 脚本来执行。
+
+但是在网上很多教程都比较老，没提到这一点。加上大家抄来抄去，不实践就扔到网上来，哎～
+
+**总之使用上面的方法中的 sh 脚本配置即可！** 

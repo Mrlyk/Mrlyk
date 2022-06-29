@@ -6,7 +6,7 @@
 
 ```sh
 #!/usr/bin/env zx  
-# 记得声明上面的执行程序
+# 记得声明上面的执行程序  my_shell.js
 
 await $`cat package.json | grep name` # 支持 await 语法
 
@@ -44,3 +44,4 @@ chmod +x ./script.mjs
 zx ./script.mjs
 ```
 
+3、

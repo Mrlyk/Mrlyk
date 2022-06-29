@@ -6,8 +6,6 @@ vscode 插件支持 js 和 ts 两种语言直接编写，官方推荐 ts（毕�
 
 
 
-
-
 ## 参考文章
 
 官方开发文档：https://code.visualstudio.com/api

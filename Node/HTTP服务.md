@@ -227,7 +227,17 @@ compressible('image/png'); // false
 如果请求时强缓存到期，但是服务器资源没变化，就可以使用协商缓存来高速浏览器使用本地资源（返回 304 状态码，不返回具体内容）
 
 - HTTP 1.0 - 在第一次请求时响应头中写入`Last-Modified`，浏览器会在下次请求的请求头的`If-Modified-Since`中携带这个时间，服务器可以比对这两个时间来判断是否返回 304。缺点是1）文件修改但被撤销的情况下，修改时间会变，导致不使用缓存；2）文件周期性被修改但内容不变，修改时间也会变化
-- HTTP 1.1 - 使用文件内容来判断缓存是否可用，使用 hash 处理城一个固定长度字符串，第一次请求时被写入 ETag，浏览器第二次请求时放在请求头`If-None-Match`中。缺点是1）ETag 生成有开销；2）客户端对文件变化内容不敏感的时候，不需要这么精准的判断
+- HTTP 1.1 - 使用文件内容来判断缓存是否可用，使用 hash 处理城一个固定长度字符串，第一次请求时被写入` ETag`，浏览器第二次请求时放在请求头`If-None-Match`中。缺点是1）ETag 生成有开销；2）客户端对文件变化内容不敏感的时候，不需要这么精准的判断
+
+**[ETag](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Etag)** 
+
+`W/` 可选
+
+`'W/'`(大小写敏感) 表示使用[弱验证器](https://developer.mozilla.org/en-US/docs/Web/HTTP/Conditional_requests#Weak_validation)。 弱验证器很容易生成，但不利于比较。 强验证器是比较的理想选择，但很难有效地生成。 相同资源的两个弱`Etag`值可能语义等同，但不是每个字节都相同。
+
+**ETag 一般是每次请求的时候都会重新计算生成，有些服务为了避免性能损耗可能也会选择缓存一段时间而导致一些问题。** 
+
+不同的服务生成策略可能不太一样，nginx 使用 last-modified + content-length 计算生成`W/"627b3fe1-2dfff"`。627b3fe1 转 16 进制 * 1000，转换成日期就是 last-modified 时间。2dfff 直接转 16 进制就是 content-length。
 
 **注意几种缓存的使用条件：**
 

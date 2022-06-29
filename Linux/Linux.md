@@ -44,6 +44,8 @@ lsof | grep deleted // 查看已经被删除但进程没结束仍然占用空间
 
 ```shell
 sort -r # 升序
+	-n # 依照数值的大小排序
+	-k field1[,field2]] #按指定的列进行排序 如 sort -rk 2 按第二列的值排序
 head -n x # 显示前面的 x 个，默认 10个
 tail -n x # 显示后面的 x 个，默认 10个
 ```
@@ -494,6 +496,21 @@ nano test.txt
 - 剪贴一整行：Ctrl+K
 - **粘贴：Ctrl+U** 
 - 搜索: Ctrl+W
+
+### 31、dig 域名 DNS 查询
+
+可以查询域名解析到的 DNS 服务器，查看本机 dns 是否被污染（`nslookup`也可以看）
+
+```shell
+dig github.com
+```
+
+![image-20220526103142976](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20220526103142976.png?x-oss-process=image/resize,w_600,m_lfit) 
+
+- Got answer 部分：显示服务返回的一些技术详情，比较重要的是 status。如果 status 的值为 NOERROR 则说明本次查询成功结束
+- OPT PSEUDOSECTION 部分： "QUESTION SECTION" 显示我们要查询的域名，A 即说明查询的记录类型为 A 记录
+- ANSWER SECTION 部分： "ANSWER SECTION" 是查询到的结果
+- Query time 部分：本次查询的一些统计信息，比如用了多长时间，查询了哪个 DNS 服务器，在什么时间进行的查询等等
 
 ## 二、系统目录结构
 

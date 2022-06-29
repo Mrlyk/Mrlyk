@@ -27,9 +27,28 @@ string：`x.x.x`
 
 #### main 入口文件
 
+string
+
 - default: `'index.js'`
 
 如果是一个库包，用户安装后。通过 CommonJS 直接`require`该包，那么引入的就是该入口文件`exports`的
+
+#### exports - main 的替代方案
+
+object
+
+[`"exports"`](http://nodejs.cn/api/packages.html#exports) 字段提供了 [`"main"`](http://nodejs.cn/api/packages.html#main) 的替代方案，其中可以定义包主入口点，同时封装包，**防止除 [`"exports"`](http://nodejs.cn/api/packages.html#exports) 中定义的入口点之外的任何其他入口点**。 这种封装允许模块作者为他们的包定义一个公共接口。
+
+```json
+"exports": {
+  ".": {
+    "require": "./lib/index.js"
+  },
+  "./lib/*.js": "./lib/*.js"
+}
+```
+
+
 
 #### type 项目模块规范
 
@@ -41,13 +60,24 @@ string：`x.x.x`
 
 使用 `module`即可使用`import`语法，但是又不能使用`require`了...
 
+#### types ts 用的主文件对应的类型声明
+
+只有在`typescript`项目中才生效，指定项目（node 项目）`main`文件的类型声明文件
+
+```json
+{
+  "main": "index.js",
+  "types": "types/index.d.ts",
+}
+```
+
 #### dependencies 和 devDependencies 区别
 
 一开始我以为 dependencies 的包就是项目中真正要用的，devDependencies 是打包的时候的工具。很多文章也是这么说的。**其实不是**。
 
 这里存在一个误区：
 
-**依赖中的代码是否会被打包到项目中，取决于项目中是否有用到这个依赖，因为打包工具都会做 tree-shaking，没用到的才会被剔除掉，只要用了肯定会被打包。和安装在 dependencies 还是devDependencies 无关。** 
+**依赖中的代码是否会被打包到项目中，取决于项目中是否有用到这个依赖，因为打包工具都会做优化，没用到的才会被剔除掉，只要用了肯定会被打包。和安装在 dependencies 还是devDependencies 无关。** 
 
 dev 和 devDependencies 最大的区别是在使用`npm install --production`安装的时候
 
@@ -137,6 +167,18 @@ Array\<string>：['./doc/ReadMe1.md']
 }
 ```
 
+指定的值只会作为建议，不会影响用户的安装和启动，但实际使用可能有影响。
+
+#### os 指定运行系统
+
+```json
+{
+  "os" : ["linux"]
+}
+```
+
+这个限制相比 engines 就是强制的，比如上面的配置如果在 windows 平台上安装就会直接报错
+
 #### publishConfig 发布时生效的一些配置
 
 { [key: string]: string }
@@ -145,7 +187,8 @@ Array\<string>：['./doc/ReadMe1.md']
 {
   publishConfig: {
     "tag": "1.0.1",
-    "registry": "https://registry.npmjs.org/" 
+    "registry": "https://registry.npmjs.org/"，
+    "access": "public"
   }
 }
 ```
@@ -153,3 +196,43 @@ Array\<string>：['./doc/ReadMe1.md']
 #### lib 告诉用户工具的函数模块目录
 
 无实质作用
+
+#### unpkg字段和jsDelivr字段
+
+这两个字段都是做cdn优化服务的
+
+- **unpkg**
+
+unpkg适用于npm上的所有内容。使用它可以使用以下URL快速轻松地从任何包加载任何文件
+
+想让我们的 npm 包通过 unpkg.com 被访问到，有两种方式：
+
+**1. 在根目录下创建 umd 目录**，直接放置打包好的 umd 规范的文件
+
+```text
+test/umd/test.umd.js
+```
+
+2. **在 package.json 添加unpkg字段**，里面存放需要访问到的文件路径，如果没有，访问的是main字段
+
+```json
+{
+  "unpkg": "dist/vue.js"
+}
+```
+
+注意：文件需要满足 umd 规范
+
+- **jsDelivr**
+
+和 unpkg 基本相同，也可以直接访问目录或者在 package.json 中声明，下面是在 package.json 中声明
+
+```json
+{
+  "jsDelivr": {
+    "main": "index.js",
+    "module": "index.esm.js"
+  }
+}
+```
+

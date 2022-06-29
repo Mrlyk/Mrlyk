@@ -103,7 +103,7 @@ function compose(middleware) {
 }
 ```
 
-
+这样就实现了一个洋葱模型，秒、太妙了！！！！
 
 ## Koa HTTP 模块
 

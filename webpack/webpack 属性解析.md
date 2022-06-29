@@ -280,6 +280,22 @@ use: [
 
 默认值是 ['.wasm', '.mjs', '.js', '.json']，所以如果要接戏 TS 文件就需要我们手动声明，注意这里会直接覆盖默认值。
 
+#### mainFiles 定义目录下的主文件
+
+定义默认获取目录下的哪个文件，默认是 [index]
+
+比如` import XX from './test'`，如果 test 是目录会尝试获取`'./test/index'`
+
+```js
+module.exports = {
+  // ...
+  resolve: {
+    mainFiles: ["index", "view"]
+  }
+  // ...
+}
+```
+
 ## devtool 定义代码映射
 
 官方文档：https://webpack.js.org/configuration/devtool/
@@ -306,9 +322,9 @@ module.exports = {
     proxy: {
       '/api': {
         changeOrigin: true, // target是域名的话，需要这个参数，
-        target: `http://${targetMap.qa5}`, // 路径代理，规则和 ng 的不一样，无论有没有 / 默认都是拼接到后面
+        target: `http://xxxx:8800`, // 路径代理，规则和 ng 的不一样，无论有没有 / 默认都是拼接到后面
         pathRewrite: {
-          '/api/': '' // 重写路径，把 api 这个去除，否则请求到时候会带上这一层
+          '/api/': '' // 重写路径，把 api 这个去除，否则请求到时候会带上这一层。不重写 /api/test -> http://xxxx:8800/api/test ；重写 /api/test -> http://xxxx:8800/test
         }
       }
     }
@@ -388,6 +404,24 @@ module.exports = {
 import $ from 'jquery' // 注意这里引入的包名称对应的是 externals 中的 key， value 是包 export 的对象
 
 ```
+
+## sideEffects 副作用标记 tree-shaking
+
+webpack@^4 在`mode`为`production`情况下默认开启 tree-shaking，原理可以查看自己的 tree-shaking 文章。总之是借助 ESM 的特性来实现，CJS 是不行的。
+
+但一般我们的项目各种模块规范混用的，所以会存在一个问题就是 webpack 不能判断依赖中的某个方法是否具有副作用（即引入时就触发的单方面的影响，比如直接在 `window`上挂载了）导致 webpack 不敢直接 shaking 掉。
+
+我们可以通过`sideEffects`字段声明项目中的模块不存在这种副作用
+
+```js
+module.exports = {
+  // ...
+  sideEffects: false, // 表明项目中所有的模块都没有副作用
+  sideEffects: ['./src/view/test.js'] // 表明 test.js 没有副作用
+}
+```
+
+*注意：直接全局开启会带来一些影响，如有的第三方模块确实存在副作用，但是被 shaking 掉了*
 
 ## optimization 优化策略
 
@@ -514,7 +548,7 @@ webpack 优化分包策略。在 webpack 中存在一系列的自动优化，比
 module.exports = {
   optimization: {
     splitChunks: {
-      chunks: 'async', // 选择那些配置进行优化，默认是 async 类型的，也可以使用 all / initial，支持函数 name 来判断
+      chunks: 'async', // 选择那些配置进行优化，默认是 async 类型的，也可以使用 all / initial。也可以设置为函数接收参数 chunk，使用 chunks.name 来判断
       maxAsyncRequests: 30, // 按需加载的最大并行请求数，默认 30
       cacheGroups: { // 缓存组
         vendors: {
@@ -551,6 +585,32 @@ module.exports = {
 - verbose：全部输出
 
 也提供更加详细的控制，可参考官方文档
+
+## parallelism 限制并行文件处理数量
+
+parallelism 配置可以限制 webpack 并行处理的文件数量，默认是 100。但是如果大文件太多，可能会造成内存溢出，就可以减小该值来处理。当然也会减慢构建速度
+
+```js
+module.exports = {
+  parallelism: 50
+}
+```
+
+## watch & watchOptions 监听文件变化
+
+在 webpack-dev-server 和 webpack-dev-middleware 中，默认会开启 watch 模式，所以这个配置对我们业务开发来说基本是一直开着的。所以有时候需要对 watchOptions 做一些定制，减少内存占用和提高构建速度。
+
+```js
+module.exports = {
+  watchOptions: {
+    aggregateTimeout: 300, // 重新构建前的延迟，聚合更改。默认是 300 ms
+    ignored: /node_modules/, // 忽略监听某些文件，可以减少内存占用
+    poll: 1000, // 开启轮询构建，如果监听不生效（比如在虚拟机和nfs盘上）可以使用该选项
+  }
+}
+```
+
+
 
 ## 其他字段说明
 

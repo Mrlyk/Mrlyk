@@ -34,3 +34,10 @@ module.exports = {
 }
 ```
 
+## css-loader
+
+css-loader 用于解析 `@import`和`url`引入的 css 文件
+
+**重点是`~`这个波浪号，其实是 css-loader 的用法**
+
+使用 `~` 会去 webpack 的 `resolve.modules`（默认 node_modules）中查找文件，同时支持别名

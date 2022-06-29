@@ -38,10 +38,10 @@ git stash branch myBrach // 从 stash 创建分支
 #### reset/revert 回退版本
 
 ```shell
-git revert {log}  // 回退某一次 commit
+git revert {log}  // 回退某一次 commit，会产生回退记录
 	-n // --no-commit 回退并且不提交
 	
-git reset {log} // 回腿到某个commit 并且放弃这次 commit 之后的所有提交
+git reset {log} // 回退到某个commit 并且放弃这次 commit 之后的所有提交，没有记录慎用
 	--hard // 回退并且放弃当前的更改
 	
 git checkout HEAD~2 myfile.js // 回退单个文件到某个版本 ~ 波浪线表示该版本往前
@@ -86,6 +86,10 @@ git rebase -i [coomit_id] # 变基目标分支，-i 可以修改 commit 信息
 - 删除 `git remote remove origin`
 - 添加`git remote add origin [remote_address]`
 
+#### 本地分支关联远程分支
+
+`git branch --set-upstream-to=origin/<branch> release`
+
 #### git 子模块 git-submodule
 
 通过 Git 子模块，可以在当前 repo 中包含其它 repos、作为当前 repo 的子目录使用，同时能够保持 repos 之间的独立。
@@ -106,3 +110,10 @@ git submodule update
 ```
 
 修改子模块文件后，在当前 repo 执行 `git status` 只会看到有模块的 changes，而不是具体子模块文件
+
+#### git show [id] 查看提交详细信息
+
+```sh
+git show ad7b0348fc1 # 查看这次提交的具体文件修改信息
+```
+

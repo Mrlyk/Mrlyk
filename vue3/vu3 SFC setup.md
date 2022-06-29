@@ -97,6 +97,20 @@ import SetupTestChild2 from './setup-test-child-2.vue'
 </script>
 ```
 
+***注意***
+
+- 如果将 vue 组件或者某些复杂的第三方类实例直接赋给响应式对象会带来像能问题
+- vue3 提供诸如`markRaw`、`shallowRef`、`shallowReactive`等方法来不进行响应式包装，就像 vue2 中我经常使用`Object.freeze`来禁止一些常量声明响应式包装一样
+
+不这么做的话开发时 vue 抛出警告
+
+参见官方文档：https://v3.cn.vuejs.org/api/basic-reactivity.html#markraw
+
+- `shallowReactive`：只处理对象最外层属性的响应式（浅层响应式）
+
+- `shallowRef`：只处理基本数据类型响应式，不进行对象的响应式处理
+- `markRaw`: 标记对象永远不会是响应式的，声明后。纵使后面使用`reactive`包装也不会生效
+
 #### 递归组件
 
 在 vue3 中 SFC 可以自己引用自己，但是要注意设置递归边界。目前还没看到应用场景
@@ -146,7 +160,8 @@ import { defineProps } from 'vue';
 defineProps({ // 返回 props 对象
   test: String
 })
-defineEmits(['change']) // 返回 emit 对象
+const emit = defineEmits(['change']) // 返回 emit 对象
+emit('change') // 触发 change 事件
 </script>
 ```
 
@@ -221,6 +236,16 @@ const post = await fetch(`/api/post/1`).then(r => r.json()) // 顶层直接使�
 因为 setup 块最终会被编译成 SFC 中的 setup 方法：`async setup`。
 
 *`async setup`必须与`suspense`组合使用* 
+
+## 最佳实践
+
+- **setup 还是声明式语法？ **
+
+setup 具有函数式编程的优点，也更加简洁。如果是**新的 vue3 项目推荐使用 setup 语法。**
+
+同时也观察过 github 上一些高 star 项目，也是以 setup 为主。只有从 vue2 迁移到 vue3 的项目为了兼容性，偏向于声明式语法！
+
+
 
 ## 其他
 

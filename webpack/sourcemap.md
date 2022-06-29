@@ -196,6 +196,12 @@ console.warn("hello");
 
 ![image-20220311153822010](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20220311153822010.png?x-oss-process=image/resize,w_500,m_lfit) 
 
+#### chrome 对 source map 的支持存在问题
+
+source map 在Chrome 98 - 101 上的支持存在一些问题：**需要热更新一次才会限制正确的源码**
+
+在 firefox 和 safari 上都没有这个问题
+
 #### //# sourceMappingURL 注释的作用
 
 在 webpack 打包方式中记录过**`//# sourceURL`**注释的作用，可以把文件加载到 source panel 中。`//# sourceMappingURL `的作用其实是相同的，只不过他加载的是源码对应的  map 文件，而`//# sourceURL`则直接加载指定的文件。

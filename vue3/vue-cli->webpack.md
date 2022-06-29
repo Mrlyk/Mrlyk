@@ -37,7 +37,13 @@
 注意 vue2 和 vue3 由于边跟比较大，插件也要适当调整版本
 
 - vue-loader: 处理 SFC 的 vue 文件
+
+  配置参考：https://vue-loader.vuejs.org/zh/options.html#compiler 
+
+  **一般我们需要通过配置 vue-loader 的 options 来配置 vue-template-loader**，比如去除 template html 标签之间的空格`preserveWhitespace: false`（默认 true）
+
 - vue-template-loader: 编译 vue 模版，配合 vue-loader 使用
+
 - `const VueLoaderPlugin = require('vue-loader/lib/plugin');`这个 webpack 插件是必须的，将 vue SFC 中 js、css 添加参数，分配给正确的 loader 处理
 
 ## 踩坑
@@ -46,14 +52,13 @@
 
 **原因**
 
-vue-loader-plugin 没配置，导致 SFC 中的样式未分离出来。
+vue-loader-plugin 没配置，导致 SFC 中的样式未分离出来。`const VueLoaderPlugin = require('vue-loader/lib/plugin')`
 
 **处理方式** 
 
+1. 配置 vue-loader-plugin
 1. 引入加上具体的 `index.css` path
-2. 
-
-
+2. vue-style-loader  可以直接用 style-loader 替换，vue-style-loader 实际上就是 style-loader
 
 #### babel 需要重新配置
 
@@ -91,6 +96,35 @@ fallback 的 loader 如果要配置参数，直接在`url-loader`中配置即可
     limit: 8192,
     name: 'static/fonts/[name].[contenthash:8].[ext]', // fallback 参数直接写在这里
     fallback: 'file-loader'
+  }
+}
+```
+
+#### 图片无法加载，路径 [object]
+
+**原因**
+
+file-loader 默认处理资源文件最后输出使用的是 ES Module 规范，但是 vue-loader 会把 template 中的路径转换成 CommonJS 的格式，导致无法在 template 中无法加载，返回一个空的 module 对象
+
+**处理方式**
+
+修改 file-loader 配置，将 ES 关闭
+
+```js
+{
+  {
+    test: /\.(png|jpe?g|gif|webp)$/,
+      use: [
+        {
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            name: 'static/img/[name].[contenthash:8].[ext]',
+            esModule: false, // 手动关闭该项
+            fallback: 'file-loader'
+          }
+        }
+      ]
   }
 }
 ```

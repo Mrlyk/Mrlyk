@@ -77,11 +77,40 @@ module.exports = merge(require('../webpack.config'), {
 ## 打包体积优化
 
 - 图片压缩
+
 - 代码压缩
+
+- gzip 压缩（需web服务支持）配合 `compression-webpack-plugin` 插件使用
+
 - 按需引入
-- csdn 引入，特别是入口处的一些框架资源，使用 cdn 是最好的（注意高可用）
+
+- csdn 引入，特别是入口处的一些框架资源和**大文件、图片**，使用 cdn 是最好的（注意高可用）还可以避免构建时的内溢出问题，加快构建速度
+
 - sideEffects 手动标记为 false，表示包没有副作用，可以被直接 shaking 掉。可以在 package.json 中直接配置全局的，也可以指向某个文件`"sideEffects": ["./src/some-side-effectful-file.js"]` 
-- webpack 5 `optimization.splitChunks `分包策略（webpack 4 是`CommonsChunkPlugin`）
+
+- webpack 5 `optimization.splitChunks `分包策略（webpack 4 是`CommonsChunkPlugin`）。**使用多入口的方式更有利于分包**
+
+  ```js
+  module.exports = {
+    entry: {
+      //...
+      antd: [ // 将 antd 这个 ui 库的常用组件单独设置打包入口
+        'antd/lib/button',
+        'antd/lib/icon',
+        'antd/lib/breadcrumb',
+        'antd/lib/form',
+      ]
+    },
+    /// webpack4 的分包插件
+    plugins: [
+      new webpack.optimize.CommonsChunkPlugin({ 
+        names: ['antd'], // 将 antd 常用组件单独打包
+        minChunks: Infinity // 拆分前共享模块的最小 chunks 数，在 4 中必须 >= 2，也可以设置为 Infinity 直接生成一个空包保证没其他的模块会被放入
+      }),
+    ]
+  }
+  ```
+
 - webpack 5 `optimization.minizer `，手动配置`terser-webpack-plugin`
 
 ## 打包速度优化
@@ -347,6 +376,34 @@ module.exports = {
   },
 };
 ```
+
+#### TS 项目 transpileOnly
+
+ts-loader 在进行编译时，会对整体项目进行语义进行检查，这是非常耗时的。我们可以开启`transpileOnly`选项来关闭该检查，同时使用官方推荐的另一个插件`fork-ts-checker-webpack-plugin`来开启另一个进程进行检查。
+
+```js
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+
+module.exports = {
+  //...
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        loader: 'eslint-loader',
+        options: {
+          transpileOnly: true  // 仅编译
+        }
+      }
+    ]
+  },
+  plugins: [
+    new ForkTsCheckerWebpackPlugin()
+  ]
+}
+```
+
+同时还可以一定程度上处理编译大量文件造成的内存溢出问题
 
 #### 其他配置最佳实践
 

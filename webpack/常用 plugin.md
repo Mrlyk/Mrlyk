@@ -208,3 +208,50 @@ config.module
 
 html 模版渲染插件
 
+## compression-webpack-plugin
+
+官方文档：https://github.com/webpack-contrib/compression-webpack-plugin 
+
+assets 输出前的的压缩插件，支持自定义压缩算法
+
+```js
+module.exports = {
+  // ...
+  plugins: [
+    new CompressionWebpackPlugin({
+      // 开启gzip压缩
+      algorithm: 'gzip', // 压缩算法
+      test: new RegExp('\\.(' + productionGzipExtensions.join('|') + ')$'), 
+      threshold: 10240, // 仅处理大于此大小的资源（以字节为单位）
+      minRatio: 0.8 // 压缩比大于此值才处理
+    })
+  ]
+}
+```
+
+## add-asset-html-webpack-plugin
+
+自动添加一个生成好的文件到 html-webpack-pluin 输出的 html 上。有时候我们需要引入一些第三方的 js 或者 DLL 预打包的 js 就可以使用该插件来引入。
+
+与我们手动写死相比，该插件支持动态配置引入路径
+
+- outputpath 引入的文件放置的地址
+- publicPath 引入标签 script 上 src 的前缀地址
+
+```js
+module.exports = {
+  // ...
+  plugins: [
+    new AddAssetHtmlPlugin([
+      {
+        filepath: require.resolve('./dll/vendor.dll.js'),
+        outputPath: 'static/js/',
+        publicPath: process.env.BUILD_BRANCH
+        ? `/${process.env.BUILD_BRANCH}/static/js/`
+        : '/static/js/'
+      }
+    ]),
+  ]
+}
+```
+

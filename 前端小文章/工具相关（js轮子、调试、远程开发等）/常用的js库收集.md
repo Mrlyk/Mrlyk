@@ -52,6 +52,8 @@
 - [diff2html](https://link.segmentfault.com/?enc=5kTKzmnEhx6NEgufU7zdUw%3D%3D.zl4F2LFJDMcgp5mxW5KmSqzkBx71TgpHC4NKWpvmzfYTiDtO5vQepGGSX%2F9%2FYPvE)：git 差异输出解析器，也是 HTML 美化器。
 - [jsPDF](https://link.segmentfault.com/?enc=eQyhtBUXDxb%2BmIS7EUzypQ%3D%3D.eGA7oSGEKKAr6KSDf56LxKIYcaG826eGy7vb%2FZ8qTBc%3D)：一款 JavaScript PDF 文件生成器。
 - [PDF.js](https://link.segmentfault.com/?enc=pa%2FRWAggygO7b9%2BUH3u8gg%3D%3D.6Px4qRoGPRTOTf9qSPelSkqVIBGCupiL%2Bl6RGp6FcQRNnNjPpwPLcYt6lU99PCC%2B)：一个 JavaScript PDF 阅读器，社区驱动，Mozilla 支持。
+- **[ browser-fs-access](https://github.com/GoogleChromeLabs/browser-fs-access)** : Googole 实验室出品的上传插件，`showOpenFilePicker`新 api 
+- **[FileSaver.js](https://github.com/eligrey/FileSaver.js)**: 文件上传下载工具
 
 ## 函数式编程
 

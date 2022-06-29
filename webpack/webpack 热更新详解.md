@@ -4,6 +4,8 @@
 
 热更新的作用大家都知道，就是不刷新页面而去更新页面中的资源代码，让我们能更高效的开发。在探究原理之前，我们还是先看看热更新怎么用，从使用去探究原理。
 
+[toc]
+
 ## 热更新实践
 
 官方文档：https://www.webpackjs.com/guides/hot-module-replacement/

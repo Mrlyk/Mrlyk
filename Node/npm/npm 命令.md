@@ -16,19 +16,37 @@
 
 path/to/npm/itself/npmrc
 
-## 一、常用命令
+## 命令
 
-#### npx
+npm 命令执行也具有 hooks，调用我们在 package.json 中定义的 script 语句
+
+**在执行 `install` 的时候会按生命周期顺序执行相应钩子：** 
+
+- `NPM7`： `preinstall -> install -> postinstall -> prepublish -> preprepare -> prepare -> postprepare` 
+- `NPM6`： `preinstall` -> `install` -> `postinstall`，同时也会触发 `prepublish`、`prepare` 
+
+文档 
+
+- [npm7 scripts](https://link.segmentfault.com/?enc=9zq0v54Tk7tWkRgiVlx0nA%3D%3D.dFVGvQ39ymMeixrbnKTWrXpsxRBy6ri7x%2B%2F6VS5nl0NRcY2mp23qrMEF2DrYy7i2) 
+- 文档 [npm6 scripts](https://link.segmentfault.com/?enc=mDy03RZZCFx6PJe8uM4cxQ%3D%3D.gDzTZYOyM3e5TifQdHwYFJQXaMqLpVq9SSpeZlAMS0pGSqxJ2a572BbITboVQDrk) 
+
+下面说明一些常用的命令
+
+#### 一、常用命令
+
+##### npx
 
 `npx` 首先会去`/node_modules`中查找可执行的命令。**如果 node_modules 中没有会直接去下载（不安装）指定的包并执行**。
 
 非常适合用来执行一些只需要一次的脚手架命令，比如`npx vue create hello world`
 
-#### npm install [git_url]｜[local_file]
+如果想让 npx 强制使用本地模块，可以使用`--no-install`选项，没有找到的话就会报错。
+
+##### npm install [git_url]｜[local_file]
 
 直接安装 git 仓库地址的包或本地文件，当然本地文件直接用`npm link`测试也可以
 
-#### npm install 和 npm update
+##### npm install 和 npm update
 
 这里说一下`npm install`和`npm update`的区别
 
@@ -55,9 +73,9 @@ path/to/npm/itself/npmrc
 
 
 
-## 二、不常用的一些命令
+#### 二、不常用的一些命令
 
-#### npm link
+##### npm link
 
 在本地开发npm模块的时候，我们可以使用npm link命令，将npm 模块链接到对应的运行项目中去，方便地对模块进行调试和测试。
 
@@ -71,14 +89,39 @@ path/to/npm/itself/npmrc
 
 接着要去使用这个包的地方执行 `npm link [pkg_name]` 即可
 
-#### npm unlink
+##### npm unlink
 
 解除 npm link 的连接操作
 
 ---
 
-#### npm view/info
+##### npm view/info
 
 查看包的信息
 
 `npm view pkg versions` 查看包的所有远程版本
+
+##### npm version [type]
+
+升级当前项目的版本并**创建 commit** 
+
+1.1.2-1 其中 `-` 后面的是预发版本
+
+| npm version | 功能                                                         |
+| ----------- | ------------------------------------------------------------ |
+| major       | - 升级大版本； - 如果有预发号则只删除预发号；                |
+| minor       | - 升级中版本； - 如果有预发号则只删除预发号                  |
+| patch       | - 如果没有预发布版本。直接升级小号，去掉预发布号； - 如果有预发布号：去掉预发布号，其他不动 |
+| premajor    | - 直接升级大版本，中版本和小 版本置为0，增加预发布版本为0    |
+| preminor    | - 直接升级中版本，小版本置为0，增加预发布版本为0             |
+| prepatch    | - 直接升级小版本，增加预发布版本为0                          |
+| prerelease  | - 如果没有预发布版本，增加小版本，增加预发布版本为0；  - 如果有预发布版本，则升级预发布版本 |
+
+##### npm view [pkg] [options]
+
+查看某个包的信息
+
+- `npm view vue` 查看 vue 的相关信息，比如最新版本，发布日期等
+- `npm view vue versions` 查看 vue 所有发布的版本
+
+*还可以使用别名 `info`、`show`* 

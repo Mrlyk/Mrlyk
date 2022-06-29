@@ -8,15 +8,15 @@
 ```js
 // series示例
 series: [{
-          type: 'pie',
-          center: [0, 0],
-          radius: 35,
-          data: [
-            {name: '分类1', value: 50},
-            {name: '分类2', value: 60},
-            {name: '分类3', value: 55},
-            {name: '分类4', value: 70}
-          ]}
+  type: 'pie',
+  center: [0, 0],
+  radius: 35,
+  data: [
+    {name: '分类1', value: 50},
+    {name: '分类2', value: 60},
+    {name: '分类3', value: 55},
+    {name: '分类4', value: 70}
+  ]}
         ]
 ```
 
@@ -24,20 +24,25 @@ series: [{
 > 为了方便统一的数据管理，通过dataset传入所有数据，方便更新和渲染  
 
 #### dataset的数据是如何对应的  
-![dataset数据对应](/assets/dataset数据对应.png)
 ```js
-series: [{
-  type: 'pie',
-  center: ['65%', 60],
-  radius: 35,
-  encode: {itemName: 3, value: 4}
-},{
-  type: 'line',
-  encode: {x: 0, value: 1}
-},{
-  type: 'bar',
-  encode: {x: 0, value: 2}
-},]
+const optioons = {
+  dataset: {
+    dimensions: [ 'label', 'value1', 'value2' ], // 对应 this.dataList 的 key，比如 [{label: '2015', value1: 10, value2: 20}]
+    source: this.dataList
+  },
+  series: [{ // 默认按列顺序对应，也可以 encode 手动声明 类目轴（category）。默认情况下，类目轴对应到 dataset 第一列。
+    type: 'pie',
+    center: ['65%', 60],
+    radius: 35,
+    encode: {itemName: 3, value: 4}
+  },{
+    type: 'line',
+    encode: {x: 0, value: 1}
+  },{
+    type: 'bar',
+    encode: {x: 0, value: 2}
+  }]
+}
 ```
 ![dataset数据对应](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/dataset%E6%95%B0%E6%8D%AE%E5%AF%B9%E5%BA%94.png?x-oss-process=image/resize,w_600,m_lfit) 
 

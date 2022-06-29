@@ -18,6 +18,23 @@
 - Plugins: ~/Library/Application Support/XXX
 - Logs: ~/Library/Logs/XXX
 
+#### 右键菜单清理
+
+安装高版本软件时，有时软件会重复注册，导致产生重复的右键菜单，可以使用以下命令重新建立右键菜单。
+
+```shell
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+```
+
+#### 参与控制台图标清理
+
+图标索引通过 sqlite3 数据库存储，所以直接操作该数据库删除索引即可，之后重启一下控制台。
+
+```shell
+cd /private/var/folders/*/*/*/com.apple.dock.launchpad # 切换到该文件夹
+sqlite3 db "delete from apps where title='XXXXXX';"&&killall Dock # 删除 XXXX
+```
+
 #### 查找文件
 
 - find [path] -name 'regex' // 通过名称正则在当前路径下查找

@@ -63,7 +63,8 @@ export default {
 
 #### 3. 在 setup 中定义响应式的对象，使用 C、W、LifeCycle 
 
-**（1）响应式的对象**  
+##### **（1）响应式的对象**  
+
 <hr/>
 
 **使用 ref**  
@@ -119,7 +120,7 @@ export default {
 
 **响应式对象使用解构的情况**  
 
-当我们直接使用 ES6 解构来获取响应式的属性时，需要使用 ref 的一些 API 进行转换，否则会导致响应性丢失 
+当我们直接使用 ES6 解构来获取响应式的属性时，需要使用 ref 的一些 API 进行转换，否则会导致响应性丢失。因为解构赋值对基本类型的数据直接复制，脱离了原来的 proxy 包装。
 ```js
 import { reactive, toRefs } from 'vue'
 export default {
@@ -149,7 +150,28 @@ export default {
 }
 ```
 
-**（2）setup 中的生命周期钩子** 
+**响应式对象转回普通对象**
+
+vue 中的响应式对象是被 proxy 包装过的，有时我们需要原始的数据对象，比如 clone 的时候。vue 提供了`toRaw`方法来帮我们这么做
+
+```js
+import { reactive, toRaw } from 'vue'
+export default {
+  setup() {
+    const state = reactive({
+      name: 'Mike',
+      age: '23',
+      sex: 'male'
+    })
+    const rawState = toRaw(state) // 返回一个普通的数据对象
+  }
+}
+```
+
+
+
+##### **（2）setup 中的生命周期钩子** 
+
 <hr/>
 
 setup 中可以访问 beforeMount 到 updated 的生命周期钩子，包含他们本身。同时基于合并策略，setup 中的生命周期钩子回调的方法会比组件本身同一周期的方法更早执行。
@@ -162,7 +184,7 @@ setup () {
 }
 ```
 
-**（3）setup 中的监听 watch**   
+##### **（3）setup 中的监听 watch**   
 
 <hr/>
 
@@ -215,7 +237,8 @@ onTrack 和 onTrigger 选项可用于调试侦听器的行为。且只在开发�
 - onTrack 将在响应式 property 或 ref 作为依赖项被追踪时被调用。
 - onTrigger 将在依赖项变更导致副作用被触发时被调用。
 
-**（4）setup 中的计算属性 computed**  
+##### **（4）setup 中的计算属性 computed**  
+
 ```js
 import { computed, ref } from 'vue'
 
@@ -279,7 +302,7 @@ Teleport 组件用于将 dom 元素渲染到指定位置。常见的业务场景
 - 如果 teleport 组件中包含的是其他 vue 组件，该组件的逻辑父组件仍然是原来的父组件，不会迁移到新的
 - teleport 组件的移动属于真正的 DOM 节点移动，而**不是**销毁和重新创建。所以使用它可以保证 DOM 的元素状态
 - to 参数和 `document.querySelector`的`id`、`class`差不多，当然也接收变量
-- 多个组件被 `to`到相同节点时，按顺序在后面追究
+- 多个组件被 `to`到相同节点时，按顺序在后面追加
 - **to 的目标元素需要在 teleport 组件前渲染完成** 
 
 ### 三、多片段（单组件支持多节点）

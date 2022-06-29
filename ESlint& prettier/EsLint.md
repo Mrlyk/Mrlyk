@@ -4,12 +4,12 @@
 
 ## 介绍
 
+**官方文档**：http://eslint.cn/docs/user-guide/configuring
+
 ESlint 被设计为完全可配置的，这意味着你可以关闭每一个规则而只运行基本语法验证，或混合和匹配 ESLint 默认绑定的规则和你的自定义规则，以让 ESLint 更适合你的项目。有两种主要的方式来配置 ESLint：
 
 1. **Configuration Comments** - 使用 JavaScript 注释把配置信息直接嵌入到一个代码源文件中。
 2. **Configuration Files** - 使用 JavaScript、JSON 或者 YAML 文件为整个目录（处理你的主目录）和它的子目录指定配置信息。可以配置一个独立的 [`.eslintrc.*`](https://eslint.bootcss.com/docs/user-guide/configuring#configuration-file-formats) 文件，或者直接在 [`package.json`](https://docs.npmjs.com/files/package.json) 文件里的 `eslintConfig` 字段指定配置，ESLint 会查找和自动读取它们，再者，你可以在[命令行](https://eslint.bootcss.com/docs/user-guide/command-line-interface)运行时指定一个任意的配置文件。
-
-如果你在你的主目录（通常 `~/`）有一个配置文件，ESLint 只有在无法找到其他配置文件时才使用它。
 
 有很多信息可以配置：
 
@@ -37,7 +37,7 @@ ESlint 被设计为完全可配置的，这意味着你可以关闭每一个规�
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   root: true
 } 
 ```
@@ -52,7 +52,7 @@ module.export = {
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   env: {
     browser: true,
     node: true,
@@ -70,7 +70,7 @@ extends 相当于配置好的 eslintrc 文件，是一个风格的实践方案�
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
@@ -87,7 +87,7 @@ plugin 插件主要是为 eslint 新增一些**具体的检查规则（rules）*
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   plugins: [
     'eslint-plugin-vue'
   ]
@@ -115,13 +115,21 @@ module.export = {
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   parserOptions: {
-    parser: '@typescript-eslint/parser', // 使用 ts 编译器
+    parser: '@typescript-eslint/parser', // 使用 ts 编译器作为参数，供外层的解析器调用
     sourceType: 'module'
   }
 }
 ```
+
+**parserOptions.parser 和 parser 的区别**
+
+有时候我们在 vue 项目中看到将`babel-eslint`设置在 `parserOptions.parser`上，他们的区别是什么呢？
+
+这里只要记住`parserOptions`就是解析器的选项，**parserOptions 中的参数除了官方指定的一些必须要有的，也可以传入自定义的被外层的`parser`使用** 。比如 `vue-eslint-parser`的源码中就会去读取`parserOptions.parser`参数来作为 vue 文件中 script 标签 js 的解析器。所以二者可以认为是一个从属关系！！
+
+在 vue 项目中，都会配置`plugin:vue/essential`的扩展，其中会引入 vue 的 eslint 解析器`vue-eslint-parser`，**而其他的如 babel 配置都需要配置在 `parserOptions.parser`中，防止对 vue 解析器的覆盖**
 
 #### rules
 
@@ -131,7 +139,7 @@ rules 中规定具体的规则配置，他的优先级最高，会覆盖 extends
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   rules: {
     'generator-star-spacing': 'off',
     'indent': ['error', 2] // 混合选项，需要查看文档的具体混合选项规则。这里的意思是缩进 2 格，否则 error
@@ -147,7 +155,7 @@ module.export = {
 
 ```js
 // .eslintrc.js
-module.export = {
+module.exports = {
   globals: {
     'Vue': true,
     'BMap': true,
@@ -157,7 +165,23 @@ module.export = {
 }
 ```
 
+#### processor
 
+预处理器。项目中的有的文件不是 js 格式的但是其中有 js 代码，要对这类文件中的 js 进行处理就需要配置预处理器
+
+```js
+module.exports = {
+    "plugins": ["a-plugin"],
+    "processor": "a-plugin/a-processor" // 使用 a 插件中提供的 a 预处理器，要使用 / 连接
+}
+```
+
+#### parser
+
+源码转 AST 的解析器，默认是 espree，也可以手动指定如
+
+- `@babel/eslint-praser` 将代码生成 ast 的时候，会被转换成 ESLint 可以理解的 ESTree 兼容结构
+- `@typescript-eslint/parser` 将 TypeScript 转换为 ESTree 兼容形式的解析器
 
 ## 行内注释禁用规则
 

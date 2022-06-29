@@ -49,7 +49,20 @@ export default {
 
 ![image-20220228193216602](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20220228193216602.png?x-oss-process=image/resize,w_400,m_lfit)  
 
+#### 作用域插槽
 
+```vue
+<!--**********子组件传 node、data 给父组件***********-->
+<template #default='{ node, data }' v-if='$scopedSlots.default'>
+  <slot :slotProps='{ node, data }'></slot>
+</template>
+
+
+<!--***********父组件使用子组件传过来的 slotProps *****************-->
+<template #default='{ slotProps }'>
+  {{ slotProps.node.label + '1' }}
+</template>
+```
 
 ## 部分 API
 

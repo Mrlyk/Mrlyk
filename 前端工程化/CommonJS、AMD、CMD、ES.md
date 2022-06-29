@@ -79,6 +79,8 @@ const sum = require('./a.js'); // 这时 sum 不再直接是函数了，而是�
 sum.sum(1, 2) // 3
 ```
 
+***commonjs 不仅支持 js 文件导入，还原生支持 json 文件***
+
 #### 原理
 
 在说明原理之前先说明 CommonJS 中的几个概念（基于 node 的实现）
@@ -141,7 +143,7 @@ b 开始执行
 a1 1
 a2 undefined
 b 执行结束
-sum2 5
+sum 5
 a 执行结束
 */
 ```
@@ -347,13 +349,28 @@ ES Modules 使用真正的动态引用。上面所述的 CJS、AMD 导出值时�
 
 #### 注意事项
 
-在项目中我们经常能看到这种代码
+1. 在项目中我们经常能看到这种代码
 
 ```js
 import 'xxxx/lib/index.css';
 ```
 
-这会让我们误以为 ES Module 支持 css 等文件的导入。**实际上 ES Module 只支持 js 文件的导入导出**，在项目中这样写之所以可行，是由于`webpack`等打包工具，在打包过程中会将 import 的所有文件视为 module，交给各自的 loader 处理后输出。而不是真的通过 import 引入的。
+这会让我们误以为 ES Module 支持 css 等文件的导入。**实际上目前 ES Module 只支持 js 文件的导入导出**，在项目中这样写之所以可行，是由于`webpack`等打包工具，在打包过程中会将 import 的所有文件视为 module，交给各自的 loader 处理后输出。而不是真的通过 import 引入的。
+
+2. import 对 json 的原生支持已进入提案阶段
+
+目前还不能直接使用 import 导入 json 文件，**平常我们能用是因为打包工具做了支持**。但原生也快要实现了
+
+```js
+import json from "./data.json" assert { type: "json" };
+```
+
+使用 assert 断言方式即可引入。
+
+现在想使用的话需要安装插件 
+
+- babel: [@babel/plugin-syntax-import-assertions](https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40babel%2Fplugin-syntax-import-assertions) 
+- eslint: importAssertions
 
 ## END
 

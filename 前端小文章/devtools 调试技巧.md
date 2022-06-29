@@ -86,3 +86,17 @@ queryObjects(Array) // 会找到所有的数组对象
 queryObjects(Promise) // 会找到所有的 promise 对象
 ```
 
+#### 使用 js 方法监听滚动找出产生滚动的元素
+
+有时候滚动条太多，不知道是谁产生的滚动条，可以暴力一点直接监听滚动事件。**open your mind...** 
+
+```js
+function findScroller(element) {
+    element.onscroll = function() { console.log(element)}
+
+    Array.from(element.children).forEach(findScroller);
+}
+
+findScroller(document.body);
+```
+
