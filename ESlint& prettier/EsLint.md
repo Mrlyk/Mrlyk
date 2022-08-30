@@ -183,6 +183,22 @@ module.exports = {
 - `@babel/eslint-praser` 将代码生成 ast 的时候，会被转换成 ESLint 可以理解的 ESTree 兼容结构
 - `@typescript-eslint/parser` 将 TypeScript 转换为 ESTree 兼容形式的解析器
 
+#### settings
+
+在配置文件中声明的共享配置，插件可以通过读取该配置来获取特定信息
+
+```js
+module.exports = {
+  //...
+  settings: {
+    react: {
+      version: 'detect' // 这样 react 的插件就可以自动读取 react 版本信息，这里配置的是自动检测 package.json 中的
+    }
+  }
+  //...
+}
+```
+
 ## 行内注释禁用规则
 
 - **禁止两句注释之间的所有规则** 

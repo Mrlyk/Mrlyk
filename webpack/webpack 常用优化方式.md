@@ -20,11 +20,11 @@
 
 #### 打包分析插件
 
-- **speed-measure-webpack-plugin**
+- **speed-measure-webpack-plugin** 
 
 分析每一步打包所耗费的时间
 
-- **webpack-bundle-analyzer**
+- **webpack-bundle-analyzer** 
 
 打包体积分析插件
 
@@ -49,7 +49,7 @@ webpack --report
 
 - **[UnusedWebpackPlugin](https://www.npmjs.com/package/unused-webpack-plugin)**
 
-查找出未使用的依赖的插件，想比于`npx depcheck`这类工具，能根据 webpack 实际的打包信息查找出更精确的结果。而`npx depcheck`只能根据是否`import`来判断
+查找出未使用的依赖的插件，相比于`npx depcheck`这类工具，能根据 webpack 实际的打包信息查找出更精确的结果。而`npx depcheck`只能根据是否`import`来判断
 
 - **[cpuprofile-webpack-plugin](https://www.npmjs.com/package/cpuprofile-webpack-plugin)** 
 
@@ -265,7 +265,7 @@ thread-loader 的兼容性相对比较差，因为没注入 `emitFile`、`emitAs
 
 **ps:**
 
-(1) 多进程启动需要花费 600ms 左右，所以如果本身打包在 15 s 以内的没必要开启
+(1) 多进程启动需要花费 600ms 左右，所以如果本身打包在 15s 以内的没必要开启
 
 (2) `HappyPack`是这个工具的上一代，作者已经明确不会维护。但是他具有更好的兼容性，如果存在兼容问题还是可以用`HappyPack`
 
@@ -416,7 +416,7 @@ module.exports = {
    - `resolve.mainFiles` 明确主文件，比如我们`import`一个目录的时候，会默认去引入目录下的`index.xx`文件，可以通过该项明确主文件到底是哪一个
 3. `module.noParse `跳过部分文件编译：对于一些完全独立的代码，不需要在做重复的依赖分析、转译等，可以直接配置该选项。比如 Vue 的 `node_modules/vue/dist/vue.runtime.esm.js` 。*如果使用了 DllPlugin 预编译了就没必要了。*
 3. loader 的 `include/exclude`明确 loader 作用范围
-3. `optimization` minimizer 手动配置，参考《webpack 属性解析》，这一项即影响打包提及，又影响打包速度
+3. `optimization` minimizer 手动配置，参考《webpack 属性解析》，这一项即影响打包体积，又影响打包速度
 
 ## 美化
 

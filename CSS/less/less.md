@@ -59,6 +59,11 @@ CSS 预处理器 less，提供了许多方便的功能，比如混入、函数�
 .test-button {
   .font.button(); /*  嵌套式的引入 */
 }
+
+/* 支持传递参数 */
+.font-weight(@weight) {
+  font-weight: @weight;
+}
 ```
 
 #### 运算 + - * /

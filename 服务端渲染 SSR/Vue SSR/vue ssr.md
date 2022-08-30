@@ -101,3 +101,56 @@ app.get('/page/news', async (req, res) => {
 })
 ```
 
+#### vue-server-renderer/client-plugin
+
+这个 plugin 的作用是生成一个名为 **vue-ssr-client-manifest.json **的文件。这个文件将在我们做服务端渲染的时候用到。
+
+**vue-ssr-client-manifest.json**
+
+其一般文件结构如下
+
+![image-20220802170719973](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20220802170719973.png?x-oss-process=image/resize,w_600,m_lfit) 
+
+- publicPath：访问静态资源的根相对路径，与webpack配置中的publicPath一致
+- all：打包后的所有静态资源文件路径
+- initial：页面初始化时需要加载的文件，会在页面加载时配置到 preload 中
+- async：页面跳转时需要加载的文件，会在页面加载时配置到 prefetch 中
+- modules：项目的各个模块包含的文件的序号，对应all中文件的顺序
+
+所以，我们能够通过vue-ssr-client-manifest.json做什么呢？**其最重要的作用就是我们能根据initial拿到客户端渲染的js代码。**
+
+#### vue-server-renderer/server-plugin
+
+这个插件会生成一个 json 文件：**vue-ssr-server-bundle.json**
+
+其文件内容结构如下，主要存放的是资源的映射信息
+
+![image-20220802170810512](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20220802170810512.png?x-oss-process=image/resize,w_1000,m_lfit)
+
+- entry 是服务端入口的文件
+- files 是服务端依赖的文件列表
+- maps 是sourcemaps文件列表。
+
+下面的`.js` 就是根据请求生成 html 的 js 代码！
+
+## 最佳实践
+
+#### 异步请求应该放在哪里
+
+我们知道，在常规的 Vue 前端渲染中，组件请求 Ajax 一般是在 mounted (created) 中调用 `this.fetchData`，然后在回调里面把返回数据写到实例的 data 中，这就 ok 了。
+ 在 SSR 中，这是不行的，因为服务器并不会执行 mounted 周期。
+
+那么我们是否可以把 `this.fetchData`提前到 created 或者 beforeCreate 这两个生命周期中执行？
+
+同样不行。原因是：`this.fetchData`    **是异步请求，请求发出去之后，没等数据返回呢，后端就已经渲染完了，无法把 Ajax 返回的数据也一并渲染出来。**
+
+所以我们一般使用 ssr 应用特有的 asyncData 周期来请求数据
+
+- 官方的推荐的做法之一是将数据都存到 vuex 然后再通过 vuex 去读取
+- **nuxt 之类的或者自己编写的框架可以在 asyncData 的时候 return 回数据**，然后和组件合并。等到真正渲染的时候直接读取即可！
+
+*注意：asyncData 是根据路由跳转的组件来获取执行的，所以**路由的组件的子组件不会执行 asyncData*** 
+
+## 参考文章
+
+vue-ssr在项目中的实践：https://zhuanlan.zhihu.com/p/95294219

@@ -372,7 +372,7 @@ rsync [options] [源文件] [目标地址]
 ```shell
 su [options] [user_name]
 	-f # 不读启动档
-	-c # 执行完指令后推出，如 su -c ls root 切换为 root 用户后执行 ls 命令然后切换回原用户
+	-c # 执行完指令后退出，如 su -c ls root 切换为 root 用户后执行 ls 命令然后切换回原用户
 ```
 
 ### 19、查看系统架构
@@ -511,6 +511,20 @@ dig github.com
 - OPT PSEUDOSECTION 部分： "QUESTION SECTION" 显示我们要查询的域名，A 即说明查询的记录类型为 A 记录
 - ANSWER SECTION 部分： "ANSWER SECTION" 是查询到的结果
 - Query time 部分：本次查询的一些统计信息，比如用了多长时间，查询了哪个 DNS 服务器，在什么时间进行的查询等等
+
+### kill 向进程发送信号（干掉进程）
+
+```shell
+kill -9 123456 # 向 pid 是 123456 的进程发送终止信号（干掉 pid 是 123456 的进程）
+```
+
+最常用的信号是：
+
+- 1 (HUP)：重新加载进程。
+- 9 (KILL)：杀死一个进程。
+- 15 (TERM)：正常停止一个进程。
+
+inux 的 **kill** 命令是向进程发送信号，**kill** 不是杀死的意思，**-9** 表示无条件退出，但由进程自行决定是否退出，这就是为什么 **kill -9** 终止不了系统进程和守护进程的原因。
 
 ## 二、系统目录结构
 

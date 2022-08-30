@@ -143,6 +143,8 @@ npx electron-forge package --arch x64 --platform darwin
 
 也可以在打包时使用`--config`手动指定
 
+***注意: 一定要声明 main 字段，指向 electron 的 main 文件，否则打包会失败。*** 
+
 **构建命令**
 
 - build for macOS, Windows and Linux

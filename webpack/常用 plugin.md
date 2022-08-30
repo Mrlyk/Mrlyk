@@ -27,7 +27,7 @@ module.exports = {
 
 ```js
 const logger = debug('vue:env')
-// mode = process.env.VUE_CLI_MODE
+/**=============== mode 取决于 vue-cli-service --mode xxx 传入的参数 ==========**/
 const basePath = path.resolve(this.context, `.env${mode ? `.${mode}` : ``}`)
 const localPath = `${basePath}.local`
 

@@ -1,5 +1,7 @@
 # Jenkins
 
+[toc]
+
 ## 一、介绍
 
 ### 1、什么是 Jenkins
@@ -248,7 +250,7 @@ router.post('/', async (req, res) => { // 接收 /deploy 的 post 请求
 curl -H "Content-Type: application/json" -X POST -d '{"app":"hello world"}' http://172.17.0.1:7788/deploy # 后面跟着服务的路径，参数是部署的应用名
 ```
 
-至此一套完整的 jenkin + gitlab 部署流程就完成了
+至此一套完整的 jenkins + gitlab 部署流程就完成了
 
 ## 其他说明
 
