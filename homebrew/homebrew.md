@@ -2,6 +2,9 @@
 
 > mac 上的包管理工具
 
+- homebrew 默认将软件安装在`/usr/local/Cellar` 目录
+- homebrew 会自动为安装的软件创建软连接到`/usr/local/bin`目录，而这个目录又是默认配置在环境变量中的，所以使用 homebroew 安装的软件无需再配置环境变量！
+
 ## 一、homebrew 自身相关
 
 **升级 homebrew**

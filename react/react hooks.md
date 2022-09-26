@@ -94,7 +94,7 @@ export default function UseStateComponent () {
 
 *ps: currentRenderingFiber 挂在 window 对象上，保存在内存中（这是 react 内存占用多的原因？）*
 
-#### useEffect、useLayoutEffect 处理副作用
+#### useEffect（watch）、useLayoutEffect 处理副作用
 
 副作用大家都知道指什么（未预期的要发生的情况），下面是几种典型的副作用情况
 
@@ -277,9 +277,9 @@ export default function UseCallbackCom () {
 
 *ps: 和 useEffect 一样，如果没有传第二个参数，那么在组件每次重新渲染时都会重新声明！*
 
-#### useMemo 记忆组件
+#### useMemo 记忆组件（computed）
 
-**`useMemo`和`useCallback`的区别**：`useMemo`会返回执行第一个函数，并且将返回值返回。
+**`useMemo`和`useCallback`的区别**：`useMemo`会执行第一个函数，并且将 return 值返回并记忆。
 
 所以在我们需要**事先进行一些计算的时候使用`useMemo`**，否则使用`useCallback`即可！
 
@@ -332,9 +332,63 @@ export default function UseMemoCom () {
 
 *ps: useMemo 比 useEffect 执行的更早！*
 
-
-
 上面有了记忆函数、记忆组件，但是有一个问题：如果组件中函数很多难道我要一个个全部用 `useCallback` 包裹一遍吗？那太麻烦了，所以 React 提供了`React.memo`来包裹整个函数式组件，以达到优化的目的。这个后面再详细说明！
+
+#### useRef
+
+在类组件中写了很多`React.createRef`来创建 DOM 对象的引用，在函数式组件中**依然**可以继使用这个方法来。react hooks 也提供了一个钩子来创建这个对象——`useRef`
+
+他的作用和`React.createRef`的作用是一模一样的！但是也具有两点特性：
+
+1. `useRef` 接收一个初始值作为`ref.current`的值。即`const ref = useRef(10)` ——> `ref.current === 10`
+2. `useRef`的值会被缓存，所以**在函数式组件中，除了使用`useState`还可以用`useRef`来缓存状态**（这与 react hook 的实现机制有关）
+
+下面举个🌰：
+
+```react
+import React, { useState, useRef, useCallback } from 'react'
+
+export default function RefTodoList () {
+  const ref = useRef()
+  const count = useRef(0)
+  const [stateCount, setstateCount] = useState(0)
+  
+  // ...
+
+  return (
+    <div>
+      { count.current } - {stateCount}
+      <button onClick={() => {
+        count.current += 1 // 值会累加，不会因为组件重新渲染就导致值被重置
+        setstateCount(count.current + 1) // 但是要手动通过其他方式触发组件重新渲染，直接使用 useRef 改值不会重新渲染组件
+      }}>count++</button>
+      <br />
+      <input
+        ref={ref}
+      />
+      <button
+        onClick={() => {
+          setList([...list, ref.current.value])
+          ref.current.value = ''
+          ref.current.focus()
+        }}
+      >
+        add
+      </button>
+      { /*...*/ }
+    </div>
+  )
+}
+
+```
+
+**需要注意的是 `useRef`的值改变 不会触发组件的重新渲染！！！**
+
+#### useReducer、useContext 减少组件层级
+
+##### useContext
+
+在 react 类组件中使用 `React.createContext` 创建了一个全局上下文对象用来通信。
 
 
 

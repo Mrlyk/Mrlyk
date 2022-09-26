@@ -62,6 +62,8 @@ d. ~/.bash_login
 e. ~/.profile 
 f. ~/.bashrc 
 
+从 a -> f，并且越底层优先级越高（a 如果存在后面的将被忽略）
+
 我的系统中配置了 zsh 作为运行实际运行到 shell，所以也可以在`~/.zshrc`中配置环境变量
 
 #### 本地路由 route
