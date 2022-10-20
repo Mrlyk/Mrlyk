@@ -6,6 +6,8 @@
 - 🌱 I’m working in Hangzhou now
 - 📫 liaoyk_code@qq.com
 
+
+
 ## 个人文章笔记目录
 
 - **Babel**  
@@ -64,8 +66,6 @@
   - [shell 脚本.md](https://github.com/Mrlyk/Mrlyk/blob/master/Linux/shell%20%E8%84%9A%E6%9C%AC.md)  
   - [vim 编辑工具命令.md](https://github.com/Mrlyk/Mrlyk/blob/master/Linux/vim%20%E7%BC%96%E8%BE%91%E5%B7%A5%E5%85%B7%E5%91%BD%E4%BB%A4.md)  
   - [我的腾讯服务器上部署的应用.md](https://github.com/Mrlyk/Mrlyk/blob/master/Linux/%E6%88%91%E7%9A%84%E8%85%BE%E8%AE%AF%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BA%94%E7%94%A8.md)  
-- **Mac 技巧**  
-  - [mac 常用快捷操作.md](https://github.com/Mrlyk/Mrlyk/blob/master/Mac%20%E6%8A%80%E5%B7%A7/mac%20%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E6%93%8D%E4%BD%9C.md)  
 - **Mysql**  
   - [linux 部署 mysql.md](https://github.com/Mrlyk/Mrlyk/blob/master/Mysql/linux%20%E9%83%A8%E7%BD%B2%20mysql.md)  
   - [mysql 系统学习.md](https://github.com/Mrlyk/Mrlyk/blob/master/Mysql/mysql%20%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0.md)  
@@ -250,16 +250,6 @@
     - [搭建 vue 开发浏览器插件脚手架实践.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%20vue%20%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AE%9E%E8%B7%B5.md)  
     - [搭建简单的 vue2 项目脚手架.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%20vue2%20%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%89%8B%E6%9E%B6.md)  
     - [脚手架搭建思路.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%80%9D%E8%B7%AF.md)  
-- **啊 2022**  
-  - [past.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%95%8A%202022/past.md)  
-  - [plan.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%95%8A%202022/plan.md)  
-- **实践项目**  
-  - **花卉公众号**  
-    - [交互.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE/%E8%8A%B1%E5%8D%89%E5%85%AC%E4%BC%97%E5%8F%B7/%E4%BA%A4%E4%BA%92.md)  
-    - [前端.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE/%E8%8A%B1%E5%8D%89%E5%85%AC%E4%BC%97%E5%8F%B7/%E5%89%8D%E7%AB%AF.md)  
-    - [后端.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE/%E8%8A%B1%E5%8D%89%E5%85%AC%E4%BC%97%E5%8F%B7/%E5%90%8E%E7%AB%AF.md)  
-    - [接口定义.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE/%E8%8A%B1%E5%8D%89%E5%85%AC%E4%BC%97%E5%8F%B7/%E6%8E%A5%E5%8F%A3%E5%AE%9A%E4%B9%89.md)  
-    - [数据库.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%AE%9E%E8%B7%B5%E9%A1%B9%E7%9B%AE/%E8%8A%B1%E5%8D%89%E5%85%AC%E4%BC%97%E5%8F%B7/%E6%95%B0%E6%8D%AE%E5%BA%93.md)  
 - **开发工具**  
   - [vscode 插件开发指南.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vscode%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md)  
   - [vscode 有用的一些插件.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vscode%20%E6%9C%89%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6.md)  
@@ -288,3 +278,4 @@
     - [ip 地址与子网掩码的计算.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/ip%20%E5%9C%B0%E5%9D%80%E4%B8%8E%E5%AD%90%E7%BD%91%E6%8E%A9%E7%A0%81%E7%9A%84%E8%AE%A1%E7%AE%97.md)  
     - [网关 gateway.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E5%85%B3%20gateway.md)  
   - [运算符.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%BF%90%E7%AE%97%E7%AC%A6.md)  
+
