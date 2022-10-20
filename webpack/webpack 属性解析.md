@@ -224,7 +224,7 @@ module.exports = {
 **use 和 loader**
 
 use 接收一个数组，可以配置多个 loader，顺序是定义在后面的先使用
-loader 是 use 的别名，在高版本 webpack 中已经废弃，尽量不要使用
+**loader 是 use 的别名**，在高版本 webpack 中已经废弃，尽量不要使用
 
 ```js
 use: [

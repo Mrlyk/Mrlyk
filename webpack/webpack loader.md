@@ -69,7 +69,7 @@ module.exports = {
 
 **前缀** 
 
-行内引入 loader 时可以配置各类前缀，如上行内引入 loader 所示。**行内引入的分隔符就是`!`号，所以引入了行内 loader 时肯定会胡咧 webpack 中配置的 normal laoder，这样也是为了防止相互冲突。**
+行内引入 loader 时可以配置各类前缀，如上行内引入 loader 所示。**行内引入的分隔符就是`!`号，所以引入了行内 loader 时肯定会忽略 webpack 中配置的 normal laoder，这样也是为了防止相互冲突。**
 
 - `!`：跳过 normal loader
 - `-!`：跳过 pre 和 normal loader

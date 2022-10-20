@@ -150,18 +150,12 @@ console.log(string.replace(/$/, '😄')) // hello😄
 
 ```javascript
 'xxx_love_study_1.mp4'.replace('xxx', '❤️') // ❤️_love_study_1.mp4
-
-
-复制代码
 ```
 
 利用(?=p)就可以很方便这这件事（可以想想和上面有什么不同？）
 
 ```javascript
 'xxx_love_study_1.mp4'.replace(/(?=xxx)/g, '❤️') // ❤️xxx_love_study_1.mp4
-
-
-复制代码
 ```
 
 画图理解
@@ -465,7 +459,6 @@ str.match(reg) // [ 'a1b', 'a2b', 'a3b' ]
 \s // [\t\v\n\r\f]
 \S // [^\t\v\n\r\f]
 .
-复制代码
 ```
 
 ## 量词

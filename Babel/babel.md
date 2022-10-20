@@ -28,6 +28,20 @@ npm i babel-loader core-js -D
 
 对 babel 对配置项做说明
 
+#### env 不同环境配置
+
+env 选项的值将从 `process.env.BABEL_ENV` 获取，如果没有的话，则获取`process.env.NODE_ENV` 的值，它也无法获取时会设置为 "development"
+
+```js
+module.exports = {
+  development: {
+    plugins: ['dynamic-import-node']
+  }
+}
+```
+
+
+
 #### presets 预设选项
 
 在 babel 中我们可以手动一项项配置各个编译选项，也可以使用别人已经预设的配置。两者之间会有一个 merge 操作（待确认）
