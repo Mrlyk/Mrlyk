@@ -10,7 +10,7 @@
 2. 生命周期用起来也没那么舒服，经常要注意重渲染的问题
 3. 原有的函数式组件突然有状态化的需求了，需要重写
 
-所以 react hooks 诞生了，它让我们能够在函数式组件中
+所以 react@16.8 （2018 年底）hooks 正式上线，它让我们能够在函数式组件中
 
 - 保存状态
 - 处理副作用（类似 vue watch 但不一样）
@@ -213,7 +213,7 @@ useEffect(() => {
 
 5. `useEffect` 回调函数可以返回一个函数，在函数销毁时执行。但要注意1、`useEffect`的本质；2、如果有依赖会在依赖变更时也执行！
 
-6. `useEffect` 第二个参数传`[]`和不传的效果时完全不同的！！
+6. `useEffect` 第二个参数传`[]`和不传的效果是完全不同的！！
 
 7. **`useEffect`可以替代类组件中的`componentDidUpdate`，实现真正的类似于 vue watch 的方法**。在类组件中要初始化时获取数据又要在更新时获取数据，就需要使用多个生命周期。有了这个钩子之后她一个人就可以干这个事情
 
@@ -384,11 +384,163 @@ export default function RefTodoList () {
 
 **需要注意的是 `useRef`的值改变 不会触发组件的重新渲染！！！**
 
-#### useReducer、useContext 减少组件层级
+#### useReducer、useContext 全局状态管理
 
 ##### useContext
 
-在 react 类组件中使用 `React.createContext` 创建了一个全局上下文对象用来通信。
+在 react 类组件中使用 `React.createContext` 创建了一个全局上下文对象用来通信。这里则是对应的指令式的写法。
+
+该 Hook 会触发重渲染，并使用最新传递给 `MyContext` provider 的 context `value` 值。**即使祖先使用 [`React.memo`](https://zh-hans.reactjs.org/docs/react-api.html#reactmemo) 或 [`shouldComponentUpdate`](https://zh-hans.reactjs.org/docs/react-component.html#shouldcomponentupdate)，也会在组件本身使用 `useContext` 时重新渲染。**
+
+`useContext` 主要是在消费者的修改，生产者还是用组件式的写法。
+
+```react
+import React, { useState, useEffect, useContext } from 'react'
+import { GlobalContext } from './film'
+
+export default function FilmList () {
+  const [films, setFilms] = useState([])
+  
+  // ...
+
+  const { setSelectFilm } = useContext(GlobalContext) // 这里接收生产者提供的整个 context 对象
+  const filmList = (setSelectFilm) =>
+    films.map((film) => (
+      <li
+        key={film.filmId}
+        onClick={() => {
+          setSelectFilm(film)
+        }}
+      >
+        {film.name}
+      </li>
+    ))
+
+  return ( // 渲染这里就简单多了，不用再使用 GloabalContext.Consumer 来包裹一层了，减少了层级
+    <div>
+      <ul className="film-list">{filmList(setSelectFilm)}</ul>
+    </div>
+  )
+}
+
+```
+
+**ps：组件式的`React.createContext()`创建`context`的方法在函数式的组件中也可用。只是 hooks 的写法会让“消费者”写起来更简单。**
+
+##### useReducer
+
+`useReducer`的理念来源于 redux 状态管理，通过统一的状态管理来降低耦合度。**他是`useState`的替代方案。**和`useState`的区别是他将组件状态放到组件之外，可以传递到其他组件方便管理。就像一个小的 redux。
+
+`useReducer`接收一个形如 `(state, action) => newState` 的 **reducer** 和**初始化状态**作为参数。同时返回一个 state 和一个 disatch 方法（和 vuex 中的 state、disatch 类似。）
+
+如果要更改状态，需要调用 **`dispatch`方法，这个方法会调用状态管理的入口方法**，也就是我们声明的 reducer。
+
+```react
+import React, { useReducer } from 'react'
+
+// 接收两个参数，之前的状态和 dispatch 调用时传入的参数
+const reducer = (prevState, action) => {
+  const nextState = { ...prevState } // 注意不能直接修改历史状态，需要用一个新的状态来承载
+  switch (action.type) {
+    case 'minus':
+      nextState.count--
+      break
+    case 'plus':
+      nextState.count++
+      break
+  }
+  return nextState
+}
+
+// 在组件外部来管理状态
+const initialState = {
+  count: 0
+}
+
+export default function UseReducerComponent () {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  return (
+    <div>ReducerComponent: {state.count}
+    <button onClick={() => {
+      dispatch({
+        type: 'minus'
+      })
+    }}>dispatch - </button>
+    <button onClick={() => {
+      dispatch({
+        type: 'plus'
+      })
+    }}>dispatch + </button>
+    </div>
+  )
+}
+```
+
+只要我们使用一个抽离的 store.js 来保存状态并且在需要的是机会引入，就能实现状态共享了。和我们的状态共享工具的核心理念是相同的。只不过功能没有那么强大。
+
+**`useReducer`还可以接收第三个参数**
+
+有时候状态的初始值需要依赖于外部状态如 props 进行动态计算，这时候可以传入第三个参数（一个函数）作为惰性初始化函数。这时候初始状态的实际值为`init(initState)`。
+
+举个🌰：
+
+```react
+
+const initState = {
+  child2Text: 'child2',
+  child3Text: 'child3'
+}
+
+const reducer = (prevState, action) => {
+  // ...
+}
+
+const init = (initState) => { // 这里计算后返回的参数才是真正的初始状态
+  return { ...initState, child3Text: 'child3-init' }
+}
+
+
+const [state, dispatch] = useReducer(reducer, initState, init)
+```
+
+
+
+**什么时候使用`useReducer`**
+
+官方将`useReducer`作为`useState`的替代品，声明的使用场景如下：
+
+-  state 逻辑较复杂且包含多个子值，或者下一个 state 依赖于之前的 state 
+- 使用 `useReducer` 还能给那些会触发深更新的组件做性能优化
+
+
+
+**配合`useContext`使用**：
+
+既然`useReducer`是想剥离组件与状态之间的耦合性，那么还需要将状态分发到任意的组件。
+
+如果要分发的组件都是子组件，那么我们直接使用 props 传递即可。但是都用到了`useReducer`就是想任意组件之间的通信。所以我们可以配合`useContext`一起，在任意组件中获取状态。
+
+
+
+**使用 `useReducer` 使用要注意的有三点：**
+
+1. 声明`useReducer` 时传入的参数需要在全局声明，而不是放在组件内部
+2. 在 reducer 中更改状态时，不能直接更改原状态，需要使用一个新的状态并返回这个状态作为新状态
+3. 一般配合 `useContext`使用
+
+#### 自定义 hook
+
+自定义 hook 是 react > 16.8 之后新增的。在编写代码时我们通常会提取公共的逻辑的写成公共函数。而函数式组件和 hook 都是函数，所以我们可以把 react 中的公共逻辑提取成一个 hook，在需要时调用。
+
+**要求：必须以`use`开头，一部分是出于语义化目的，另一部分是因为 react 会对 use 开头的函数进行检查，判断其是否符合 hook 规则。**  
+
+**自定义 Hook 是一种自然遵循 Hook 设计的约定，而并不是 React 的特性。**
+
+既然目的都是提取公共逻辑，那么自定义 hook 和直接提取公共逻辑的函数有什么区别呢？
+
+1. 自定义 hook 中如果没有再调用其他 hook ，只是普通的函数逻辑，那么和普通的提取公共逻辑的函数没有区别。如果有调用其他 hook，react 则会对其进行检查，判断是否符合 hook 规则。比如是否在非 react 函数中调用了。
+2. 自定义 hook 如果其中有 `setState`之类的方法，那么自定义 hook 也会**使调用他的函数式组件重新执行。**
 
 
 
@@ -424,3 +576,7 @@ function App1() {
 }
 ```
 
+#### hook 规则
+
+- **只在最顶层使用 hook。不要再循环、条件、嵌套函数使用调用 hook**
+- **只在 react 中使用 hook，不要在普通的 js 函数中使用**

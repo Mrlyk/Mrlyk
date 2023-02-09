@@ -23,3 +23,11 @@ const {
 // targets 最终输出 { 'es.promise.finally', 'es.promise.all-settled' } 等
 ```
 
+#### depcheck
+
+通过引用关系排查未使用的包。可以直接使用如下命令，不用安装。
+
+```shell
+npx depcheck
+```
+

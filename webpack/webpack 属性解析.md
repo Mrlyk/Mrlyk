@@ -315,7 +315,7 @@ webpakc-dev-server 内置服务器
 ```js
 module.exports = {
   devServer: {
-    host: '0.0.0.0', // 启动的主机地址，如果未域名需要域名能解析到本机或配合修改 host 使用
+    host: '0.0.0.0', // 启动的主机地址，如果为域名需要域名能解析到本机或配合修改 host 使用
     port: '8080', // 启动端口
     allowedHosts: 'all', // ！！！允许映射的域名，不开启的话修改本机 host 映射本机域名时无法访问：Invalid Host header
     historyApiFallback: true, // 未匹配到页面时回腿到 index.html ，对单页应用很有效

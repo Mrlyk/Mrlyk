@@ -33,6 +33,23 @@ string
 
 如果是一个库包，用户安装后。通过 CommonJS 直接`require`该包，那么引入的就是该入口文件`exports`的
 
+#### module 声明
+
+string
+
+- default: ''
+
+用于声明 ES module 规范的模块入口位置，默认的 main 字段声明支持的是 CommonJS，但是不好做 tree-shaking。但是为了兼容老的包，另外使用了一个 module 字段来声明。
+
+比如
+
+```json
+{
+  main: "lib/index.js",
+  module: "es/index.js"
+}
+```
+
 #### exports - main 的替代方案
 
 object
@@ -114,6 +131,16 @@ dev 和 devDependencies 最大的区别是在使用`npm install --production`安
 - option: `true`、`false` 
 
 设置为 true 时无法使用 npm 发布
+
+#### scripts
+
+执行的脚本，通过 `npm run xxx` 执行。
+
+与直接通过 `node xxx` 执行不同的是，npm run 会创建一个新的 Shell，会将当前目录的 `node_modules/.bin `子目录加入PATH变量，执行结束后，再将PATH变量恢复原样。
+
+这意味着，当前目录的 `node_modules/.bin` 子目录里面的所有脚本，都可以直接用脚本名调用，而不必加上路径。比如，当前项目的依赖里面有 `cross-env` ，只要直接写 `cross-env xxx` 就可以了，无需将包安装或链接到全局。
+
+**如果发现依赖明明安装了，但是 scripts 确无法执行。可能是项目文件夹名的问题（比如私有包我们可能直接把文件夹命名为 `@xxx/xxx` 了），带有 `\` 的项目文件夹名会导致路径查找有问题！** 
 
 #### homepage 主页地址
 

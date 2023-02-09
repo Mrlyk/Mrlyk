@@ -23,7 +23,7 @@ module.exports = {
 
 在项目中建立如 `.env.development`文件即可。插件只会将代码中明确使用的参数输出到最终的打包产物中。
 
-*ps：vue-cli 中就是使用的该工具来读取不同环境后缀的变量文件*
+*ps：vue-cli 中就是使用的该工具来读取不同环境后缀的变量文件，其最终使用的还是 webpack.DefinePlugin 来定义环境变量*
 
 ```js
 const logger = debug('vue:env')
@@ -44,8 +44,8 @@ const load = envPath => {
   }
 }
 
-load(localPath) //先读取了本地配置以 .local 结尾的
-load(basePath)  // 再读取了环境变量配置，所以理论上后面的配置会覆盖前面的
+load(localPath) //先读取了本地配置
+load(basePath)  // 再读取了环境变量配置 dotenvExpand 中有判断，已经存在变量不会重复覆盖，所以 local 的优先级高于非 local 的
 ```
 
 ## cross-env 跨平台环境变量设置

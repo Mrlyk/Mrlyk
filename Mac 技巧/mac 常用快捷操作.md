@@ -1,5 +1,7 @@
 # Mac 常用快捷操作
 
+[toc]
+
 ## 一、快捷键
 
 - 展示/隐藏 隐藏项目：cmd + shift + .
@@ -84,3 +86,16 @@ route add 本机ip mask 255.255.255.255 网关ip
 route delete 本机ip mask 255.255.255.255 网关ip # 可以只输入 ip，删除所有 ip 对应的路由
 ```
 
+#### 通过 defaults 命令修改软件配置
+
+软件安装后有一些隐藏的用户配置，可以通过`defaults`命令来修改。功能类似于修改 windows 的注册表达到修改配置的目的。
+
+比如需要打开 photoshop 的调试模式
+
+```sh
+defaults write com.adobe.CSXS.11 PlayerDebugMode 1
+
+# defaults read 默认可以读取现有的所有配置
+```
+
+将 PlayerDebugMode 配置打开

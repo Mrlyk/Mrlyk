@@ -35,15 +35,40 @@ PC 以 Mac 为例，在网络选项中开启网页代理并配置端口（默认
 
 1. 开启 charles proxy `Enable transparent HTTP proxying` 
 2. 设置手机 wifi 的 ip 地址和端口和 pc 相同（要在同一 wifi 下）
-3. 安装 charles 证书：在 charles -> help -> ssl proxying -> install charles root certificate
+3. **安装 charles 证书**：在 charles -> help -> ssl proxying -> install charles root certificate
 4. 设置 SSL 代理：通过主菜单打开 **Proxy | SSL Proxy Settings** 弹窗，勾选 `Enable SSL proxying`。host 和 port 都设置为*即可
 5. 手机安装证书，手机访问`chls.pro/ssl`安装即可，安装后信任
 
-*安卓要更麻烦一点，需要手动生成证书，具体查看参考文章*
+*安卓要更麻烦一点？需要手动生成证书，具体查看参考文章*
 
 
 
 **注意：charles 的代理和自己的小飞机代理会冲突，只能开启其中一个！** 
+
+## https 请求抓取
+
+https 由于带有加密，在 recording 中抓到的请求都是 \<unknow> 。我们需要做两步：
+
+1. 安装 ssl 根证书
+2. 设置 https 代理
+
+#### 安装 ssl 根证书
+
+第一步很简单，在 help 选项中手动安装即可，如下图
+
+![image-20221021151718527](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20221021151718527.png?x-oss-process=image/resize,w_800,m_lfit)  
+
+如果是在 pc 上直接安装第一个即可。
+
+点击安装后如果是在 Mac 上会弹出钥匙串，手动在钥匙串中搜索`charles`，找到后点击显示简介-信任。设置为始终信任的证书！
+
+如果 windows 则添加到“个人信任区”！
+
+#### 设置 https 代理
+
+首先要确保在计算机的网络偏好设置中，开启了 https 代理，mac 默认是开启的！
+
+之后还是在 charles 软件中
 
 ##  常用功能
 
@@ -84,6 +109,11 @@ PC 以 Mac 为例，在网络选项中开启网页代理并配置端口（默认
 ![image-20220524110528196](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg/image-20220524110528196.png?x-oss-process=image/resize,w_600,m_lfit) 
 
 **注意：可以在主界面的 tools 中配置`no caching`，防止读取缓存而重写不生效。**
+
+## 其他
+
+- 设置过滤器为`*`表示匹配所有 
+- **设置 host 需要完整的 host，也支持正则匹配** 
 
 ## 参考文章
 
