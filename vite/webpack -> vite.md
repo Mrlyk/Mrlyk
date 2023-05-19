@@ -12,8 +12,6 @@
 
 4. 添加 vite.config.js 并从 vue.config.js 迁移配置
 
-5. 
-
    
 
 ## 参考文章

@@ -167,3 +167,16 @@ export default {
 1. 将要传递的普通值通过一个对象包裹，在值变更时通过`this._provided.object.xxx = xxx` 来赋值。因为是浅拷贝，所以这样能获取到最新的值。
 2. 传递一个函数而不是数据对象，在要获取最新值时调用这个函数（推荐的做法）
 3. 传递整个 vue 实例（`this`），这个和第一个的原理类似，不过不需要实时赋值了，但不推荐！
+
+## Vue.mixin
+
+> parent：mixin extend 混入的，child：组件本身 vm.options   
+> 合并顺序是最先合并全局混入的 mixin 接着合并所有在组件的 mixin 中注册的，按注册顺序从前往后合并，后面的会覆盖前面的。在 mixin 中的合并完成后，最后才合并组件本身的 vm.options，所以会显得组件本身的优先级最高。 
+
+- data 和 methods：使用 mergeDataOrFn 方法，其中先判断 child 有没有该方法，没有就用父的。（上面说过最后合并的才是 vm.options，所以这里是先判断 child 有没有）后面判断没有 parent 的就用子的。如果父子都有，使用 mergedData 进行递归合并，以子优先，递归的条件是他们都是对象且不等。
+- 生命周期 LIFECYCLE HOOKS： 使用的是数组的 concat 方法，将子组件的生命周期拼接到后面。因为这种合并策略，所以 mixin 混入的对象生命周期内的方法执行要早于 vm 组件的。 
+- 组件、指令、过滤器：采用原型链的方法 （Object.create()）将 child 指向 parent 的原型，这样子组件优先级最高，子组件没有再去原型上找。
+- watch：同名也会保留，但会将回调函数合并从 parent -> child，所以会先执行 parent 在执行 child 的。
+- provide 合并方法和 data 相同，使用 mergeDataOrFn 方法。
+
+另外还可以使用 Vue.config.optionMergeStrategies.myVOption 自定合并策略。   

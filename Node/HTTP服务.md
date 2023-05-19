@@ -242,7 +242,7 @@ compressible('image/png'); // false
 **注意几种缓存的使用条件：**
 
 1. 新打开一个标签页：从强缓存到协商缓存，一步步判断
-2. 点击刷新按钮：js 文件依然从强缓存开始判断，other（如 html）则会跳过强缓存，走协商缓存，并且会在请求头中添加`cache-control: max-age=0`（请求头里的表示按照协商缓存的规则走）
+2. 点击刷新按钮：js 文件依然从强缓存开始判断，other（如 html）则会跳过强缓存，走协商缓存，并且会在请求头中添加`cache-control: max-age=0`覆盖掉原有的 cache-control 配置（请求头里的表示按照协商缓存的规则走）
 3. ctrl+F5 强刷：跳过强缓存，并且在请求头中添加`cache-control: no-cache`和`pragma: no-cache`
 
 **实际请求中会先判断 ETag 是否存在，不存在的情况下再去判断`Last-Modified`**
@@ -264,3 +264,27 @@ res.setHeader('Last-Modified', mtime);
 res.statusCode = lastModified === mtime ? 304 : 200;
 ```
 
+#### 启发式缓存
+
+如果一个可以缓存的请求没有设置 Expires 和 Cache-Control ，但是响应头有设置Last-Modified信息，这种情况下浏览器会有一个默认的缓存策略：(Date - Last-Modified)*0.1，这就是[启发式缓存](https://paulcalvano.com/2018-03-14-http-heuristic-caching-missing-cache-control-and-expires-headers-explained/)。
+
+*注：**只有在服务端没有返回明确的缓存策略时才会激活浏览器的启发式缓存策略**。*
+
+##### 启发式缓存的缓存时间
+
+不同浏览器的启发式缓存时间不同，但一般都会参考响应头中的`last-modifioed`字段。
+
+通用的一种计算方式是：(当前时间(响应头中的 Date 字段) - last-modified) * 0.1；（firefox 会取这个值和 7 天相比，小的那一个）
+
+🌰：当前时间是 2/1，`last-modified` 是 1/1，那么缓存时间是 (2/1 - 1/1) * 0.1 = 3 天。资源的过期时间就是 2/4，也就是 2/4 号才会重新发起请求。
+
+*ps：可能有人疑惑启发式缓存的时间是按当前时间去算，那不是一直都在变吗？其实当前时间指的是响应头中的 Date 字段，表示资源的发送时间。没有重新请求这个时间是一直不变的，所以启发式缓存的时候也不会变。*
+
+##### 启发式缓存会带来问题
+
+启发式缓存出现的背景是`Cache-Control`还没有被广泛的配置的一种折衷方案，不应该依赖启发式缓存。
+
+##### 正确的做法
+
+1. 明确的声明`Cache-Control`响应头，配置缓存时间
+2. 使用版本化或者携带时间戳的 url

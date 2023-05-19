@@ -168,6 +168,10 @@ sonar.projectKey=my:project
  
 # 源码的相对配置文件的路径
 #sonar.sources=.
+
+# sonar 服务地址
+# sonar.host.url=https://xxxxx 
+
 # 配置忽略的文件夹，.gitignore 中的文件会被自动忽略
 #sonar.exclusions=./dist,./node_modules 
  

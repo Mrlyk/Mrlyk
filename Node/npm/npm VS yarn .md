@@ -79,6 +79,16 @@ yarn 和 lerna 提供相同的 monorepo 方式：
 
 `.pnp.cjs`文件包含了包和磁盘位置的映射关系，有了这张关系表，yarn 可以立即告诉 node 去哪里查找包。达到安装一个新的依赖时能立刻使用的效果（不用重启项目？）并且为优化提供了更多可能。
 
+#### 按 scope 更新
+
+yarn 支持按 scope 来更新或删除某一类包
+
+```shell
+yarn upgrade --scope @vue #更新所有 vue 开头的包
+```
+
+npm 则不支持这样的操作，需要使用另外的依赖包如 [npm-check-updates](https://www.npmjs.com/package/npm-check-updates) 
+
 ## 如何选择
 
 无需纠结，这两个差距不是很大，习惯哪个就哪个！要么就选择更现代的`pnpm`、`tnpm`等

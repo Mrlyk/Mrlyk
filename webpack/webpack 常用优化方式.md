@@ -29,7 +29,7 @@
 打包体积分析插件
 
 ```shell
-webpack --report
+webpack --analyze
 ```
 
 - **[webpack-dashboard](https://www.npmjs.com/package/webpack-dashboard)** 
@@ -304,6 +304,8 @@ module.exports = {
 **除了 cache 需要配置之外。还可以对`optimization`中的`moduleIds`进行配置，这也属于持久化缓存的一部分。**配置可以查看《webpack 属性解析》。
 
 *实测配置之后，二次打包速度提升 100%* 
+
+*在 webpack4 中使用 hard-source-webpack-plugin 也可以达到这个效果*
 
 **注意**
 

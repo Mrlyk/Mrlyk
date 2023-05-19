@@ -36,7 +36,7 @@ uplinks:
 	npmjs:
 		url: https://registry.npmjs.org/
   taobao:
-		url: https://registry.npm.taobao.org/
+		url: https://registry.npmmirror.com/
 ```
 
 - **packages** - 最重要的参数，通过配置该参数可以设定包权限
@@ -57,6 +57,7 @@ packages:
 ```
 
 - **listen** - 配置启动端口，`listen: 0.0.0.0:3000` 在 3000 端口启动
+- **store** - 发布的包存储地址
 
 ### 4、发布
 
@@ -67,6 +68,8 @@ packages:
 `npm publish --registry http://localhost:4873/`
 
 *ps：npm login 是 npm adduser 的别名* 
+
+
 
 ### 5、删除已发布的包
 
@@ -86,7 +89,36 @@ packages:
 pm2 start verdaccio # 使用 pm2 在服务端启动
 ```
 
+#### 通过 nginx 转发
 
+很多时候服务器的 80 端口会被 nginx 服务针对不同域名做多个转发。如果需要配置 nginx 转发到 verdaccio 的服务，为了能够正确的访问到之前发布的包，需要配置一些请求头，一个标准的配置如下。
+
+```nginx
+server {
+  listen 80;
+  server_name npm.example.com;
+
+  access_log /var/log/nginx/npm.example.com.access.log;
+
+  location / {
+    proxy_pass http://npm; 
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-NginX-Proxy true;
+    proxy_redirect off;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+
+  error_page 404 /404.html;
+  location = /404.html {
+  }
+
+  error_page 500 502 503 504 /50x.html;
+  location = /50x.html {
+  }
+}
+```
 
 ## 权限控制
 
@@ -109,6 +141,8 @@ auth:
 ```
 
 可以配合 packages 控制允许发布的人员类型，**再将 auth 配置项中的 max_users 设置为 -1**，禁止其他人员注册，达成权限控制。
+
+**注册用户的密码存在文件中，默认使用MD5加密** 
 
 ## 私服的搭建工具
 

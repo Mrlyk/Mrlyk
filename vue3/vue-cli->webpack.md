@@ -30,11 +30,13 @@
 
 #### 其他配置
 
-- `babel-plugi-dynamic-import-node`: webpack 打包出来是使用 require 加载模块，不支持异步加载，比如异步路由等。使用该插件可以将 require 转换成`Promise.then(xxx => require('xxx'))`的形式，以支持异步。可以**提高 vue 热更新速度**，否则每次更新，整个 chunk 都会被更新。**但要注意如果使用了魔法注释 /* webpackChunkName: "xxxx" */，两者之间会有冲突** 
+- `babel-plugin-dynamic-import-node`: webpack 打包出来是使用 require 加载模块，不支持异步加载，比如异步路由等。使用该插件可以将 require 转换成`Promise.then(xxx => require('xxx'))`的形式，以支持异步。可以**提高 vue 热更新速度**，否则每次更新，整个 chunk 都会被更新。**但要注意如果使用了魔法注释 /* webpackChunkName: "xxxx" */，两者之间会有冲突** 
 
 ## 渲染 vue 必须的插件
 
 注意 vue2 和 vue3 由于边跟比较大，插件也要适当调整版本
+
+#### vue2
 
 - vue-loader: 处理 SFC 的 vue 文件
 
@@ -45,6 +47,12 @@
 - vue-template-loader: 编译 vue 模版，配合 vue-loader 使用
 
 - `const VueLoaderPlugin = require('vue-loader/lib/plugin');`这个 webpack 插件是必须的，将 vue SFC 中 js、css 添加参数，分配给正确的 loader 处理
+
+#### vue3
+
+- vue-loader: 和 vue2 一致，但是要16版本以上
+- @vue/compiler-sfc：替代 vue2 的 vue-template-loader，和使用的的 vue3 版本保持一致
+- `const { VueLoaderPlugin } = require('vue-loader')` ，vue3 的 webpack 插件获取地址也改变了
 
 ## 踩坑
 

@@ -1,5 +1,7 @@
 # vue2 到 vue3 的破坏性变更
 
+[toc]
+
 ## 被移除的 API
 
 - $on、$off 和 $once 实例方法

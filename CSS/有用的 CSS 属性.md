@@ -16,6 +16,25 @@
 
  chrome >= 56
 
+元素会吸附在最近的滚动祖先元素上，也就是说元素的定位是相对于**最近的**`overflow` **不是** `visible` 的祖先元素上。
+
+```css
+div {
+  overflow: hidden;
+}
+
+div .child {
+  position: sticky;
+  top: 0;
+}
+```
+
+如果像上面这样，最近的元素是 hidden，那么 child 就会相对于他来定位。这样往往达不到我们要的效果。
+
+因为 div 元素会被滚动上去，子元素也会被滚动上去，**导致没有预期的吸附效果。**
+
+所以要想达到预期，div 元素的 `overflow` 需要设置为 `visible` 。但是有时候我们需要隐藏溢出的部分，这就需要用到其他属性来配合了。比如`clip-path`
+
 #### 设置长宽比 aspect-ratio
 
 在实现这个属性之前，一般使用 padding-top 撑开元素的 hack 来实现。但是存在额外的计算开销。
@@ -104,4 +123,18 @@ function removeHint() {
 
 #### backdrop-filter 
 
-**`backdrop-filter`** [CSS](https://developer.mozilla.org/zh-CN/docs/Web/CSS) 属性可以让你为一个元素后面区域添加图形效果（如模糊或颜色偏移）。因为它适用于元素*背后*的所有元素，为了看到效果，必须使元素或其背景至少部分透明。
+**`backdrop-filter`** [CSS](https://developer.mozilla.org/zh-CN/docs/Web/CSS/backdrop-filter) 属性可以让你为一个元素后面区域添加图形效果（如模糊或颜色偏移）。因为它适用于元素*背后*的所有元素，为了看到效果，必须使元素或其背景至少部分透明。
+
+#### 裁剪显示区域 clip-path
+
+举例说明
+
+```css
+.clip-path-example {
+  clip-path: inset(10px 4px 10px 4px); /** 将元素的 上 右 下 左 裁剪 10px 4px 10px 4px */
+  clip-path: inset(10px round 10px); /** round 可以用来创建圆角，也支持上右下左分别设置*/
+}
+```
+
+裁剪矩形的规则和设置`margin`、`padding`类似，也可以缩写为两个或者一个。
+

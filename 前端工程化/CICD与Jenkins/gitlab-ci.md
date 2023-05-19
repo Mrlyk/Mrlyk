@@ -104,6 +104,56 @@ install-job:
 - script - 数组，当前流程执行的 shell 脚本
 - tags - 数组，**很重要**，是当前 job 的 Excutor 标记。gitlab 的 runner 会通过 tags 去判断能否执行当前这个 job。
 
+#### 2.1.1 stages 中的一些重要配置
+
+```yaml
+# 规定满足什么条件时触发
+only:
+	changes: 
+		- package.json # 仅在 package.json 变更时触发
+	refs:
+		- /^test$/ # 仅在推送分支是 test 分支时触发
+		
+
+# rules 可以配置更加复杂的触发条件规则
+
+#下面的配置中，任务将在以下条件下执行：
+
+#如果是由合并请求（merge request）触发的流水线，则任务始终执行。
+#如果提交代码的分支是“main”，则任务需要手动触发执行。
+#如果提交代码时带有标签（tag），则任务需要手动触发执行。
+#如果提交代码的分支是“master”，永远不执行
+#如果提交代码的分支是“dev”，设置环境变量 DEPLOY_TO 为 production
+rules:
+  - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    when: always
+  - if: $CI_COMMIT_BRANCH == "main"
+    when: manual
+  - if: $CI_COMMIT_TAG
+    when: manual
+	- if $CI_COMMIT_BRANCH' == "master"
+		when: never
+	- if: $CI_COMMIT_BRANCH == "dev"
+    variables:
+      DEPLOY_TO: "production"
+      
+      
+# artifacts 产物，可以进行缓存，并在不同阶段的脚本中都可以通过路径去获取到
+artifacts: 
+	expire_in: 1 week # 一周后过期，自动删除
+	paths:
+		- dist/ # 制定将 dist/ 目录下的东西作为产物缓存
+		
+
+# cache 缓存，和 artifacts 不同，artifacts 缓存的是产物，方便回滚操作。cache 缓存的是依赖，比如 node_modules 方便构建
+cache:
+  key: my-cache-key # 缓存的键名。如果没有为cache配置指定一个key，则会使用所有path路径的哈希值作为默认值
+  paths: # 要缓存的文件
+    - vendor/
+    - node_modules/
+  policy: pull # 如果没有缓存就去服务器上拉，默认值为 push，表示将构建所产生的缓存数据推到服务器上，以待下一次使用
+```
+
 ### 2.2 tags
 
 如下图的 gitlag-org 就是当前 runner 的 tags，表示**当前这个 runner 只会执行 tag 为 gitlab-org 的 job**，其他的没有 tag 或 tag 不为这个的都不会执行。
@@ -134,7 +184,7 @@ gitlab-runner register # 注册
 gitlab-runner verify # 如果没配置过 ssh 密钥可能在官网那里是默认不激活的，就需要使用这个命令激活该 runner。如果是已激活的就不需要了
 ```
 
-注册的时候要在 gitlab 官网的 Settings -> CI/CD -> Runners 中找到 **Specific runners** 的 url 和 token，之后按照提示配置即可。
+**注册**的时候要在 gitlab 官网的 Settings -> CI/CD -> Runners 中找到 **Specific runners** 的 url 和 token，之后按照提示配置即可。
 
 *ps: runner 的 executor 根据实际机器环境选择，一般 linux 选 shell 就可以*
 

@@ -87,7 +87,7 @@
 
 ## 三、启动 homebrew 安装的服务
 
-启动：`brew service start xxx` 
+启动：`brew service start xxx`  开机会默认启动
 
 停止：`brew service stop xxx`
 

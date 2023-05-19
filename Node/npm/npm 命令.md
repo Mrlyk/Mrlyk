@@ -101,7 +101,7 @@ npm 命令执行也具有 hooks，调用我们在 package.json 中定义的 scri
 
 `npm view pkg versions` 查看包的所有远程版本
 
-##### npm version [type]
+##### npm version [type] 升级当前项目版本
 
 升级当前项目的版本并**创建 commit** 
 
@@ -117,7 +117,7 @@ npm 命令执行也具有 hooks，调用我们在 package.json 中定义的 scri
 | prepatch    | - 直接升级小版本，增加预发布版本为0                          |
 | prerelease  | - 如果没有预发布版本，增加小版本，增加预发布版本为0；  - 如果有预发布版本，则升级预发布版本 |
 
-##### npm view [pkg] [options]
+##### npm view [pkg] [options] 查看包信息
 
 查看某个包的信息
 
