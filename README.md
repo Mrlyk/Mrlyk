@@ -71,6 +71,7 @@
     - [AST 实践.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/JS%20%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/AST%20%E5%AE%9E%E8%B7%B5.md)  
     - [AST.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/JS%20%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/AST.md)  
     - [手写 AST 解析器.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/JS%20%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/%E6%89%8B%E5%86%99%20AST%20%E8%A7%A3%E6%9E%90%E5%99%A8.md)  
+    - [编译器核心技术概览.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/JS%20%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/%E7%BC%96%E8%AF%91%E5%99%A8%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88.md)  
   - [原型.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%8E%9F%E5%9E%8B.md)  
   - [渲染优化之——js 时间分片.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E4%B9%8B%E2%80%94%E2%80%94js%20%E6%97%B6%E9%97%B4%E5%88%86%E7%89%87.md)  
 - **Linux**  
@@ -263,7 +264,6 @@
   - **概念相关**  
     - [MVC、MVP、MVVM.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/MVC%E3%80%81MVP%E3%80%81MVVM.md)  
     - [OSI 七层网络模型.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/OSI%20%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B.md)  
-  - [这些年踩过的坑.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/%E8%BF%99%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91.md)  
 - **前端工程化**  
   - **CICD与Jenkins**  
     - [Jenkins（webhook、gitlab）持续集成.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/CICD%E4%B8%8EJenkins/Jenkins%EF%BC%88webhook%E3%80%81gitlab%EF%BC%89%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90.md)  
@@ -286,6 +286,7 @@
   - [webstorm 插件开发指南.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/webstorm%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md)  
 - **开发踩坑经历鉴赏**  
   - [记一次ssr应用生产全局状态污染.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E7%BB%8F%E5%8E%86%E9%89%B4%E8%B5%8F/%E8%AE%B0%E4%B8%80%E6%AC%A1ssr%E5%BA%94%E7%94%A8%E7%94%9F%E4%BA%A7%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81%E6%B1%A1%E6%9F%93.md)  
+  - [这些年踩过的坑.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E7%BB%8F%E5%8E%86%E9%89%B4%E8%B5%8F/%E8%BF%99%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91.md)  
 - **微应用探索**  
   - **singleSpa**  
     - [single-spa-vue.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BE%AE%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2/singleSpa/single-spa-vue.md)  

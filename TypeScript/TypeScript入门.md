@@ -112,15 +112,6 @@ s = e // 这时 e 的类型虽然也不明确，但是在直接赋值给 s 的�
 if (typeof e === 'string') {
   s = e
 }
-/*
-* 类型断言
-* 语法：
-* 	as 语法
-*   <> 尖括号语法
-*/
-// 或者使用 类型断言，告诉 ts 编译器这个 e 就是 string 类型
-s = e as string
-s = <string> e // 类型断言的第二种写法
 ```
 
 ##### void
@@ -203,6 +194,45 @@ enum MyNumber1 {
   two = 'a' // 如果是字符则不会实现反向赋值操作，即只会有 MyNumber1.two = a ，不会有 MyNumber.a = two
 }
 ```
+
+#### 1.3 类型断言
+
+有时候我们需要手动指定一个值的类型。
+
+```ts
+/*
+* 类型断言
+* 语法：
+* 	as 语法
+*   <> 尖括号语法
+*/
+// 或者使用 类型断言，告诉 ts 编译器这个 e 就是 string 类型
+s = e as string
+s = <string> e // 类型断言的第二种写法
+```
+
+一般具有以下用途：
+
+1. 联合类型参数，如果不指定具体类型我们就只能使用公共的方法，但是可以通过`as`类型断言来确定类型并使用私有方法
+
+   ```ts
+   interface Cat {
+       name: string;
+       run(): void;
+   }
+   interface Fish {
+       name: string;
+       swim(): void;
+   }
+   
+   function swim(animal: Cat | Fish) {
+       (animal as Fish).swim();
+   }
+   ```
+
+2. 将父类断言为更加具体的子类
+
+3. 将 any 断言为一个具体的类型
 
 ## 三、编译选项
 

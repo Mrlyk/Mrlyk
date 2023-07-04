@@ -497,4 +497,6 @@ export default class RefComponent extends Component {
    )
    ```
 
+   **开启严格模式后，react 组件会在调试模式下被渲染两边（可以观察到 console 执行了两遍），以便我们发现可能的副作用。**
+   
    

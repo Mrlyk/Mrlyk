@@ -15,13 +15,13 @@
 
 ## 常用命令
 
-| npm 命令        | pnpm 对应的命令                               |
-| --------------- | --------------------------------------------- |
-| `npm install`   | [`pnpm install`](https://pnpm.io/cli/install) |
-| `npm i <pkg>`   | [`pnpm add `](https://pnpm.io/cli/add)        |
-| `npm run <cmd>` | [`pnpm `](https://pnpm.io/cli/run)            |
-| `npm update`    | [`pnpm update`](https://pnpm.io/cli/update)   |
-| `npm uninstall` | [`pnpm remove`](https://pnpm.io/cli/remove)   |
+| npm 命令        | pnpm 对应的命令                                          |
+| --------------- | -------------------------------------------------------- |
+| `npm install`   | [`pnpm install`](https://pnpm.io/cli/install)            |
+| `npm i <pkg>`   | [`pnpm add `](https://pnpm.io/cli/add) -P 对应 npm 的 -S |
+| `npm run <cmd>` | [`pnpm `](https://pnpm.io/cli/run)                       |
+| `npm update`    | [`pnpm update`](https://pnpm.io/cli/update)              |
+| `npm uninstall` | [`pnpm remove`](https://pnpm.io/cli/remove)              |
 
 #### 其他命令
 
@@ -33,7 +33,7 @@
 
 #### ppm --filter
 
-filter 命令时 monorepo 解决方案的关键命令，允许用户指定一个 scope 来执行命令
+filter 命令是 monorepo 解决方案的关键命令，允许用户指定一个 scope 来执行命令
 
 `pnpm --filter <package_selector> <command>`
 
@@ -48,11 +48,73 @@ pnpm --filter "...^foo" test # 执行所有依赖 foo 的依赖的 test 命令
 pnpm --filter ...{<directory>} <cmd> # 还可以使用具体的文件夹地址
 
 pnpm --filter=!./lib <cmd> # 执行非 lib 文件下的命令
+
+pnpm add dayjs --filter @yk/demo # 仅在 @yk/demo 这个 workspace 中安装 dayjs
 ```
 
 通过这个命令我们就可以只安装某个文件夹下的依赖，而不是每次都全量安装
 
 同时由于`pnpm`默认使用一个`store`文件夹来存储依赖，所以对 monorepo 有天然的支持
+
+#### pnpm -r
+
+与以下命令一起使用时，在工作区的每个项目中运行命令：
+
+- `install`
+- `list`
+- `outdated`
+- `publish`
+- `rebuild`
+- `remove`
+- `unlink`
+- `update`
+- `why`
+
+如安装所有工作区的依赖`pnpm -r install` 
+
+## workspace
+
+workspace 是 pnpm 带来的一项核心功能，有了他我们可以做很多事，比如管理 monorepo 项目。
+
+配置了 workspace 
+
+#### 利用 workspace 本地调试包
+
+在没有 pnpm 提供的 workspace 之前，我们使用 `rpm link` 的方式来调试我们本地开发的包。但是这种方法不方便且有很多局限性。
+
+而使用 workspace 则可以简单的达成这一目的。
+
+1、在 pnpm-workspace.yaml 中配置 workspace
+
+```yaml
+# 声明几个空间
+packages:
+  - 'models/*'
+  - 'app-mobile'
+  - 'app-pc'
+```
+
+2、声明依赖来自 worksppace
+
+```json
+{
+  "dependencies": {
+      "@yk/demo": "workspace:^",
+  }
+}
+```
+
+3、在依赖的 package.json 中声明文件名
+
+文件路径：`当前目录/models/package.json` models 已经被配置为了一个命名空间
+
+```json
+{
+  "name": "@yk/demo",
+  "private": true,
+  "main": "src/index"
+}
+```
 
 ## 带来的一些问题
 

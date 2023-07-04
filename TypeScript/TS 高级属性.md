@@ -127,6 +127,95 @@ class Myclass implements myInter {
 - type 声明的别名具有唯一性，比如上面如果再声明一个`type myType = {}`会报错。但是接口不会，接口会将同名的进行属性合并，当然后面定义的接口和之前定义的接口中已定义的同名属性类型需要相同
 - interface 可以被子类进行实现而不只是单单用来描述一个类的结构
 
+##### extends 用作条件判断
+
+参考：[TS关键字extends用法总结](https://juejin.cn/post/6998736350841143326)
+
+extends 关键字用作条件判断时，如：`type P = 'x' extends 'x' ? string : number`
+
+其意义是**满足前面类型需求的也一定满足后面的类型需求则为真（前面是后面的子）**。上面的`x`类型和后面的相同，肯定是满足的，所以最终返回`string`。
+
+如果是这样
+
+```ts
+type P = 'x' | 'y' extends 'x' ? string : number
+```
+
+满足前面类型需求的`y`并不能满足后面的类型需求，所以上面返回的是`number`。
+
+##### extends 与联合类型的分配律 
+
+```text
+对于使用extends关键字的条件类型（即上面的三元表达式类型），如果extends前面的参数是一个泛型，当传入该参数的是联合类型，则使用分配律计算最终的结果。分配律是指，将联合类型的联合项拆成单项，分别代入条件类型，然后将每个单项代入得到的结果再联合起来，得到最终的判断结果。
+```
+
+```ts
+type P<T> = T extends 'x' ? string : number
+type myT = P<'x' | 'y'> // type myT = string | number
+
+// 等价于
+type myT = 'x' extends 'x' ? string : number | 'y' extends 'x' ? string : number
+```
+
+上面的 T 指代的实际是正在遍历的成员元素，不能理解为完整的联合类型！！！
+
+**注意 never**
+
+1. never 是所有类型的子类型
+2. **never 被认为是空的联合类型** 
+
+基于第一点，`type P = never extends 'x' ? string : number` 会返回 `string` 类型
+
+基于第二点，`type P<T> = T extends 'x' ? string : number` ，因为 never 是空的联合类型，所以进行上面说的分配计算后发现没有可以分配的值，也就不会有最终结果，**返回的一直是`never`** 
+
+**注意 any**
+
+- any 也被认为是所有类型的子类型
+
+但是和 never 不同的是 any 会返回”符合“和”不符合“两个条件的 数据
+
+```ts
+type P = any extends number ? true : false
+// 等价于
+type P = (number extends number ? true : false) | (no-number extends number ? true : false) = true | false = boolean
+```
+
+**消除分配律**
+
+有时候我们并不想要这种分配律特性，我们就希望他联合判断，这时候怎么办呢？——使用`[]`
+
+```ts
+// 具有分配律的写法
+type ToArray<Type> = Type extends any ? Type[] : never; //
+type StrArrOrNumArr = ToArray<string | number>; // 结果是：`string[] | number[]` 即要么是数字数组要么是字符串数组
+
+// 消除分配律的写法
+type ToArrayNonDist<Type> = [Type] extends [any] ? Type[] : never;
+type StrArrOrNumArr2 = ToArray<string | number>; // 结果是：`(string | number)[]` 即数字或字符串数组
+```
+
+##### extends 与对象类型的判断
+
+我们很容易混淆 extends 与联合类型的判断和 extends 与对象类型的判断。
+
+- 对于联合类型：使用分配律判断前面的是否都是后面的子集
+- 对于对象类型：**判断的原则仍然不变，前面的是后面的子。但是要注意“子“的概念是父拥有的子都要有，同时子可以拥有一些自己的扩展方法**
+
+```ts
+type UselessType<T extends {a: 1, b: 2}> = T;
+
+type Test1 = UselessType<{a: 1,b: 2, c: 3}> // 符合
+type Test1 = UselessType<{a: 1}> // 不符合，子没有继承父所有的
+```
+
+**注意不要混淆联合类型和对象的判断！！！** 
+
+##### 父子类型关系图
+
+从上往下，父 -> 子
+
+![image-20230704100049846](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg_2023/image-20230704100049846.png?x-oss-process=image/resize,w_600,m_lfit) 
+
 #### 属性的封装
 
 类声明后，一般情况下我们可以任意修改属性的值，只要类型符合即可。但是有些属性是不能被随意更改的，除了在构造函数中进行逻辑判断限制，还可以像其他强类型语言一样，使用`private、public`声明私有和公有属性。
@@ -270,7 +359,77 @@ const fanclass = new Fan2<string>('haha')
 
 总之泛型就是用来给不明确的变量一个声明。
 
-#### 泛型推断 infer
+#### 映射类型
+
+在 ts 入门中我们声明对象时，没必要重复声明所有的项，只要符合某个映射规则即可，这就是映射类型。
+
+```ts
+type OnlyBoolsAndHorses = {
+  [key: string]: boolean; //映射类型 [key: string]
+};
+ 
+const conforms: OnlyBoolsAndHorses = {
+  del: true,
+  rodney: false,
+};
+```
+
+#### 索引类型访问 Indexed access
+
+我们可以像访问普通对象一样，直接获取某个类型
+
+```ts
+type Person = {age: number, name: string}
+type Age = Person['age'] // type Age = number
+
+type Age = Person['age' | 'name'] // type Age = number | string
+type Age = Person[keyof Person] // type Age = number | string
+```
+
+**我们还可以通过`number`关键字来访问数组中的元素，如下：**
+
+```ts
+const MyArray = [
+  { name: "Alice", age: 15 },
+  { name: "Bob", age: 23 },
+  { name: "Eve", age: 38 },
+];
+ 
+type Person = typeof MyArray[number] // typeof {name: 'Alice', age: 15} -> {name: string, age: number}
+```
+
+如果使用范型数组 `T[number]` 这样访问 `number` 属性，可以认为返回的是一个联合类型数组。
+
+## 协变与逆变
+
+**参数为父，返回值为子 —— 参数是逆变，返回值是协变**。如何理解呢，看下面的例子：
+
+假设我有如下三种类型：
+
+> ```
+> Greyhound ≼ Dog ≼ Animal
+> ```
+
+`Greyhound` （灰狗）是 `Dog` （狗）的子类型，而 `Dog` 则是 `Animal` （动物）的子类型。由于子类型通常是可传递的，因此我们也称 `Greyhound` 是 `Animal` 的子类型。
+
+**问题**：以下哪种类型是 `Dog → Dog` 的子类型呢？
+
+1. `Greyhound → Greyhound`
+2. `Greyhound → Animal`
+3. `Animal → Animal`
+4. `Animal → Greyhound`
+
+第一种：假设传入的是一只其他品种的狗，符合`Dog -> Dog` 但是不符合`Greyhound`， 所以不是；
+
+第二种：同第一种，不是；
+
+第三种：传入任意品种的狗都是`Animal`，所以参数没问题。但是返回值可能不是狗，而是其他动物，不符合`Dog`。所以也不是；
+
+第四种：同第三种参数没问题，返回值`Greyhound` 是狗的一种，也符合。所以他是`Dog -> Dog` 的子类型；
+
+## 常用操作符
+
+#### infer - 泛型推断
 
 - infer： 表示在 extends 条件语句中**推断**的类型变量
 
@@ -313,8 +472,94 @@ type InstanceType<T extends new (...args: any []) => infer P ? P : any>
 - `ConstructorParameters<T>`：获取构造函数的参数类型
 - `InstanceType<T>`：获取实例类型
 
+#### 类型提取 Pick / Omit
+
+##### Pick
+
+Pick 的作用是从类型定义的属性中，选取需要的属性返回一个新的类型定义（和 lodash 的 pick 方法类型）
+
+Pick 接收两个参数，第一个是要提取的对象，第二个是要提取的属性。下面是一个示例：
+
+```ts
+interface Person {
+  id: string;
+  name: string;
+  age: number;
+}
+
+type Female = Pick<Person, 'id' | 'name'> 
+// 上面的相当于
+interface Female {
+  id: string;
+  name: string;
+}
+```
+
+##### Omit 
+
+Omit 和 Pick 作用类似，只不过是取除了传入的参数之外的
+
+```ts
+interface Person {
+  id: string;
+  name: string;
+  age: number;
+}
+
+type Female = Omit<Person, 'age'> 
+// 上面的相当于
+interface Female {
+  id: string;
+  name: string;
+}
+```
+
+与 Omit 类似的还有一个 `exclude`，不过 `exclude`用于从联合类型中排除类型，Omit 则用与对象和接口。
+
+#### typeof - 引用变量类型 
+
+```ts
+let s = 'hello'
+let n : typeof s // let n : string
+```
+
+当然也可以引用复杂的类型
+
+**对于函数其返回变量类型为返回值的类型** 
+
+```ts
+function f() {
+  return {x: 10, y: 3}
+}
+
+type P = ReturnType<typeof f> // type P = {x: number, t:number}
+```
+
+#### keyof - 从对象生成联合类型
+
+```ts
+interface Person {
+  id: string;
+  name: string;
+  age: number;
+}
+
+type key = keyof Person // type key = 'id' | 'name' | 'age'
+```
+
+#### in - 取联合类型的值
+
+```ts
+type name = 'a' | 'b'
+type KName = {
+  [key in name]: sting
+} // type KName = {a: sting, b: string}
+```
+
 
 
 ## 参考文章
 
 轻松拿下 TS 泛型：https://juejin.cn/post/7064351631072526350
+
+深入理解 TypeScript: https://jkchao.github.io/typescript-book-chinese/tips/covarianceAndContravariance.html
