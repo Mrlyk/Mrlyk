@@ -21,6 +21,7 @@
   - [CSS 与 js 变量.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/CSS%20%E4%B8%8E%20js%20%E5%8F%98%E9%87%8F.md)  
   - [CSS 层叠上下文.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/CSS%20%E5%B1%82%E5%8F%A0%E4%B8%8A%E4%B8%8B%E6%96%87.md)  
   - [CSS 工程化方案.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/CSS%20%E5%B7%A5%E7%A8%8B%E5%8C%96%E6%96%B9%E6%A1%88.md)  
+  - [FLIP 动画技术.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/FLIP%20%E5%8A%A8%E7%94%BB%E6%8A%80%E6%9C%AF.md)  
   - [box-shadow生产图片.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/box-shadow%E7%94%9F%E4%BA%A7%E5%9B%BE%E7%89%87.md)  
   - [css 字体引入 .md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/css%20%E5%AD%97%E4%BD%93%E5%BC%95%E5%85%A5%20.md)  
   - [filter滤镜的妙用.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/filter%E6%BB%A4%E9%95%9C%E7%9A%84%E5%A6%99%E7%94%A8.md)  
@@ -28,7 +29,9 @@
   - **less**  
     - [less.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/less/less.md)  
   - **tailwindcss**  
+    - [tailwindcss 的一些使用技巧.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/tailwindcss/tailwindcss%20%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7.md)  
     - [tailwindcss.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/tailwindcss/tailwindcss.md)  
+  - [viewport 与虚拟键盘.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/viewport%20%E4%B8%8E%E8%99%9A%E6%8B%9F%E9%94%AE%E7%9B%98.md)  
   - [前端隐水印.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/%E5%89%8D%E7%AB%AF%E9%9A%90%E6%B0%B4%E5%8D%B0.md)  
   - [常见知识点总结.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/%E5%B8%B8%E8%A7%81%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93.md)  
   - [有用的 CSS 属性.md](https://github.com/Mrlyk/Mrlyk/blob/master/CSS/%E6%9C%89%E7%94%A8%E7%9A%84%20CSS%20%E5%B1%9E%E6%80%A7.md)  
@@ -74,6 +77,7 @@
     - [编译器核心技术概览.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/JS%20%E7%BC%96%E8%AF%91%E8%BF%87%E7%A8%8B/%E7%BC%96%E8%AF%91%E5%99%A8%E6%A0%B8%E5%BF%83%E6%8A%80%E6%9C%AF%E6%A6%82%E8%A7%88.md)  
   - [原型.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/%E5%8E%9F%E5%9E%8B.md)  
   - [渲染优化之——js 时间分片.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/%E6%B8%B2%E6%9F%93%E4%BC%98%E5%8C%96%E4%B9%8B%E2%80%94%E2%80%94js%20%E6%97%B6%E9%97%B4%E5%88%86%E7%89%87.md)  
+  - [源码中看到的一些 hack 用法.md](https://github.com/Mrlyk/Mrlyk/blob/master/JS%20%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9/%E6%BA%90%E7%A0%81%E4%B8%AD%E7%9C%8B%E5%88%B0%E7%9A%84%E4%B8%80%E4%BA%9B%20hack%20%E7%94%A8%E6%B3%95.md)  
 - **Linux**  
   - [Linux.md](https://github.com/Mrlyk/Mrlyk/blob/master/Linux/Linux.md)  
   - [linux 下使用 clash 配置vpn.md](https://github.com/Mrlyk/Mrlyk/blob/master/Linux/linux%20%E4%B8%8B%E4%BD%BF%E7%94%A8%20clash%20%E9%85%8D%E7%BD%AEvpn.md)  
@@ -134,6 +138,7 @@
   - [rollup 配置说明.md](https://github.com/Mrlyk/Mrlyk/blob/master/Rollup/rollup%20%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E.md)  
   - [什么是 Rollup.md](https://github.com/Mrlyk/Mrlyk/blob/master/Rollup/%E4%BB%80%E4%B9%88%E6%98%AF%20Rollup.md)  
 - **TypeScript**  
+  - [TS 五个小提示.md](https://github.com/Mrlyk/Mrlyk/blob/master/TypeScript/TS%20%E4%BA%94%E4%B8%AA%E5%B0%8F%E6%8F%90%E7%A4%BA.md)  
   - [TS 实践.md](https://github.com/Mrlyk/Mrlyk/blob/master/TypeScript/TS%20%E5%AE%9E%E8%B7%B5.md)  
   - [TS 高级属性.md](https://github.com/Mrlyk/Mrlyk/blob/master/TypeScript/TS%20%E9%AB%98%E7%BA%A7%E5%B1%9E%E6%80%A7.md)  
   - [TypeScript入门.md](https://github.com/Mrlyk/Mrlyk/blob/master/TypeScript/TypeScript%E5%85%A5%E9%97%A8.md)  
@@ -152,6 +157,9 @@
   - [electron-vue.md](https://github.com/Mrlyk/Mrlyk/blob/master/electron/electron-vue.md)  
 - **google 搜索技巧**  
   - [google 搜索技巧.md](https://github.com/Mrlyk/Mrlyk/blob/master/google%20%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/google%20%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7.md)  
+- **h5 性能优化**  
+  - [h5 端侧缓存方案.md](https://github.com/Mrlyk/Mrlyk/blob/master/h5%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/h5%20%E7%AB%AF%E4%BE%A7%E7%BC%93%E5%AD%98%E6%96%B9%E6%A1%88.md)  
+  - [js 基准性能测试Becnmark.md](https://github.com/Mrlyk/Mrlyk/blob/master/h5%20%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/js%20%E5%9F%BA%E5%87%86%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95Becnmark.md)  
 - **homebrew**  
   - [brew 小工具.md](https://github.com/Mrlyk/Mrlyk/blob/master/homebrew/brew%20%E5%B0%8F%E5%B7%A5%E5%85%B7.md)  
   - [homebrew.md](https://github.com/Mrlyk/Mrlyk/blob/master/homebrew/homebrew.md)  
@@ -178,10 +186,10 @@
     - [opencv-python.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%BA%93/opencv-python.md)  
     - [pyautogui 键鼠操作.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%BA%93/pyautogui%20%E9%94%AE%E9%BC%A0%E6%93%8D%E4%BD%9C.md)  
     - [time.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%BA%93/time.md)  
-  - **机器学习**  
-    - [coco dataset.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/coco%20dataset.md)  
-    - [pytorch.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/pytorch.md)  
 - **react**  
+  - [RSC—React Server Component 实现探究.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/RSC%E2%80%94React%20Server%20Component%20%E5%AE%9E%E7%8E%B0%E6%8E%A2%E7%A9%B6.md)  
+  - [react Fiber.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20Fiber.md)  
+  - [react SSR hyrdate.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20SSR%20hyrdate.md)  
   - [react class 状态与实例.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20class%20%E7%8A%B6%E6%80%81%E4%B8%8E%E5%AE%9E%E4%BE%8B.md)  
   - [react diff 算法.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20diff%20%E7%AE%97%E6%B3%95.md)  
   - [react hoc.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20hoc.md)  
@@ -192,11 +200,18 @@
   - [react 入门.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E5%85%A5%E9%97%A8.md)  
   - [react 工程配置.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E5%B7%A5%E7%A8%8B%E9%85%8D%E7%BD%AE.md)  
   - [react 常用工具.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7.md)  
+  - [react 最佳实践.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5.md)  
   - [react 生命周期.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.md)  
   - [react 组件属性与通信.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E7%BB%84%E4%BB%B6%E5%B1%9E%E6%80%A7%E4%B8%8E%E9%80%9A%E4%BF%A1.md)  
   - [react 踩坑记录.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95.md)  
+  - [react 遵循SOLID原则.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/react%20%E9%81%B5%E5%BE%AASOLID%E5%8E%9F%E5%88%99.md)  
+  - [为什么 hooks 要写在顶层.md](https://github.com/Mrlyk/Mrlyk/blob/master/react/%E4%B8%BA%E4%BB%80%E4%B9%88%20hooks%20%E8%A6%81%E5%86%99%E5%9C%A8%E9%A1%B6%E5%B1%82.md)  
 - **redis**  
   - [redis.md](https://github.com/Mrlyk/Mrlyk/blob/master/redis/redis.md)  
+- **serverless**  
+  - **Midway Faas**  
+    - [midway faas.md](https://github.com/Mrlyk/Mrlyk/blob/master/serverless/Midway%20Faas/midway%20faas.md)  
+  - [serverless 简介.md](https://github.com/Mrlyk/Mrlyk/blob/master/serverless/serverless%20%E7%AE%80%E4%BB%8B.md)  
 - **vite**  
   - [vite 常用插件.md](https://github.com/Mrlyk/Mrlyk/blob/master/vite/vite%20%E5%B8%B8%E7%94%A8%E6%8F%92%E4%BB%B6.md)  
   - [vite 开发服务启动流程.md](https://github.com/Mrlyk/Mrlyk/blob/master/vite/vite%20%E5%BC%80%E5%8F%91%E6%9C%8D%E5%8A%A1%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B.md)  
@@ -208,8 +223,6 @@
   - [pinia.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/pinia.md)  
   - [vu3 SFC setup.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/vu3%20SFC%20setup.md)  
   - [vue router 鉴权.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/vue%20router%20%E9%89%B4%E6%9D%83.md)  
-  - **vue 设计实现（读书笔记）**  
-    - [01-.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/vue%20%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%EF%BC%88%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%89/01-.md)  
   - [vue 高阶组件.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/vue%20%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6.md)  
   - [vue-cli->webpack.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/vue-cli-%3Ewebpack.md)  
   - [vue-loader.md](https://github.com/Mrlyk/Mrlyk/blob/master/vue3/vue-loader.md)  
@@ -233,8 +246,10 @@
   - [常用 loader.md](https://github.com/Mrlyk/Mrlyk/blob/master/webpack/%E5%B8%B8%E7%94%A8%20loader.md)  
   - [常用 plugin.md](https://github.com/Mrlyk/Mrlyk/blob/master/webpack/%E5%B8%B8%E7%94%A8%20plugin.md)  
 - **前端单元测试**  
+  - [chai.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/chai.md)  
   - [jest.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/jest.md)  
   - [karma.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/karma.md)  
+  - [mocha.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/mocha.md)  
 - **前端小文章**  
   - [JS doc.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/JS%20doc.md)  
   - [QWIK HTML 优先框架.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/QWIK%20HTML%20%E4%BC%98%E5%85%88%E6%A1%86%E6%9E%B6.md)  
@@ -264,6 +279,7 @@
   - **概念相关**  
     - [MVC、MVP、MVVM.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/MVC%E3%80%81MVP%E3%80%81MVVM.md)  
     - [OSI 七层网络模型.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/%E6%A6%82%E5%BF%B5%E7%9B%B8%E5%85%B3/OSI%20%E4%B8%83%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B.md)  
+  - [浏览器录屏与局部录制方案.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E6%96%87%E7%AB%A0/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BD%95%E5%B1%8F%E4%B8%8E%E5%B1%80%E9%83%A8%E5%BD%95%E5%88%B6%E6%96%B9%E6%A1%88.md)  
 - **前端工程化**  
   - **CICD与Jenkins**  
     - [Jenkins（webhook、gitlab）持续集成.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/CICD%E4%B8%8EJenkins/Jenkins%EF%BC%88webhook%E3%80%81gitlab%EF%BC%89%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90.md)  
@@ -278,6 +294,8 @@
     - [搭建 vue 开发浏览器插件脚手架实践.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%20vue%20%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AE%9E%E8%B7%B5.md)  
     - [搭建简单的 vue2 项目脚手架.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%20vue2%20%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%89%8B%E6%9E%B6.md)  
     - [脚手架搭建思路.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%80%9D%E8%B7%AF.md)  
+- **又是一个前端小知识**  
+  - [AbortController 中断一切.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%8F%88%E6%98%AF%E4%B8%80%E4%B8%AA%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%9F%A5%E8%AF%86/AbortController%20%E4%B8%AD%E6%96%AD%E4%B8%80%E5%88%87.md)  
 - **小程序开发**  
   - [uni-app.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91/uni-app.md)  
 - **开发工具**  
@@ -285,6 +303,8 @@
   - [vscode 有用的一些插件.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/vscode%20%E6%9C%89%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6.md)  
   - [webstorm 插件开发指南.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/webstorm%20%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md)  
 - **开发踩坑经历鉴赏**  
+  - **浏览器兼容相关的坑**  
+    - [ios webview 弹窗动画渲染问题.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E7%BB%8F%E5%8E%86%E9%89%B4%E8%B5%8F/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E7%9B%B8%E5%85%B3%E7%9A%84%E5%9D%91/ios%20webview%20%E5%BC%B9%E7%AA%97%E5%8A%A8%E7%94%BB%E6%B8%B2%E6%9F%93%E9%97%AE%E9%A2%98.md)  
   - [记一次ssr应用生产全局状态污染.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E7%BB%8F%E5%8E%86%E9%89%B4%E8%B5%8F/%E8%AE%B0%E4%B8%80%E6%AC%A1ssr%E5%BA%94%E7%94%A8%E7%94%9F%E4%BA%A7%E5%85%A8%E5%B1%80%E7%8A%B6%E6%80%81%E6%B1%A1%E6%9F%93.md)  
   - [这些年踩过的坑.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BC%80%E5%8F%91%E8%B8%A9%E5%9D%91%E7%BB%8F%E5%8E%86%E9%89%B4%E8%B5%8F/%E8%BF%99%E4%BA%9B%E5%B9%B4%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91.md)  
 - **微应用探索**  
@@ -293,6 +313,8 @@
   - [前端沙箱.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BE%AE%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2/%E5%89%8D%E7%AB%AF%E6%B2%99%E7%AE%B1.md)  
   - [微应用探索.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BE%AE%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2/%E5%BE%AE%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2.md)  
   - [我的微前端如何去做.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%BE%AE%E5%BA%94%E7%94%A8%E6%8E%A2%E7%B4%A2/%E6%88%91%E7%9A%84%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%A6%82%E4%BD%95%E5%8E%BB%E5%81%9A.md)  
+- **我要搞开源**  
+  - [开源贡献的几个小提示.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%88%91%E8%A6%81%E6%90%9E%E5%BC%80%E6%BA%90/%E5%BC%80%E6%BA%90%E8%B4%A1%E7%8C%AE%E7%9A%84%E5%87%A0%E4%B8%AA%E5%B0%8F%E6%8F%90%E7%A4%BA.md)  
 - **数据可视化**  
   - [Echarts.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96/Echarts.md)  
 - **服务端渲染 SSR**  
@@ -302,6 +324,9 @@
     - [Nuxt vue 服务端渲染框架.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%20SSR/Vue%20SSR/Nuxt%20vue%20%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%E6%A1%86%E6%9E%B6.md)  
     - [vue ssr.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%20SSR/Vue%20SSR/vue%20ssr.md)  
   - [什么是 SSR.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E6%B8%B2%E6%9F%93%20SSR/%E4%BB%80%E4%B9%88%E6%98%AF%20SSR.md)  
+- **机器学习**  
+  - [coco dataset.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/coco%20dataset.md)  
+  - [pytorch.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/pytorch.md)  
 - **正则表达式**  
   - [正则_study.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99_study.md)  
   - [正则表达式笔记.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%AC%94%E8%AE%B0.md)  
@@ -309,6 +334,7 @@
   - [动态规划.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E7%AE%97%E6%B3%95/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92.md)  
 - **编程思想**  
   - [函数式编程.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B.md)  
+  - [理解业务系统的复杂性.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/%E7%90%86%E8%A7%A3%E4%B8%9A%E5%8A%A1%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%A4%8D%E6%9D%82%E6%80%A7.md)  
 - **计算机基础**  
   - [unicode.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/unicode.md)  
   - **计算机网络**  
@@ -316,6 +342,10 @@
     - [网关 gateway.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E5%85%B3%20gateway.md)  
   - [运算符.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E8%BF%90%E7%AE%97%E7%AC%A6.md)  
 - **读书笔记（部分）**  
+  - **python 深度学习**  
+    - [1、人工智能，机器学习和深度学习背景.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/python%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1%E3%80%81%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%EF%BC%8C%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E8%83%8C%E6%99%AF.md)  
+    - [2、神经网络的数学基础.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/python%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/2%E3%80%81%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80.md)  
+    - [矩阵的数学运算.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/python%20%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/%E7%9F%A9%E9%98%B5%E7%9A%84%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97.md)  
   - **vuejs设计与实现**  
     - [1、框架设计概览.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/1%E3%80%81%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1%E6%A6%82%E8%A7%88.md)  
     - [2、响应系统.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/vuejs%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/2%E3%80%81%E5%93%8D%E5%BA%94%E7%B3%BB%E7%BB%9F.md)  
@@ -330,3 +360,7 @@
     - [《函数式编程》.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/%E3%80%8A%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E3%80%8B.md)  
   - **重构**  
     - [重构方法实践—《重构》读后感.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89/%E9%87%8D%E6%9E%84/%E9%87%8D%E6%9E%84%E6%96%B9%E6%B3%95%E5%AE%9E%E8%B7%B5%E2%80%94%E3%80%8A%E9%87%8D%E6%9E%84%E3%80%8B%E8%AF%BB%E5%90%8E%E6%84%9F.md)  
+- **达芬奇**  
+  - [1、认识达芬奇.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%BE%BE%E8%8A%AC%E5%A5%87/1%E3%80%81%E8%AE%A4%E8%AF%86%E8%BE%BE%E8%8A%AC%E5%A5%87.md)  
+  - [2、基础剪辑.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%BE%BE%E8%8A%AC%E5%A5%87/2%E3%80%81%E5%9F%BA%E7%A1%80%E5%89%AA%E8%BE%91.md)  
+  - [常用快捷键.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E8%BE%BE%E8%8A%AC%E5%A5%87/%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE.md)  
