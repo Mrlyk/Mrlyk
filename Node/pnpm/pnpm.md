@@ -15,13 +15,13 @@
 
 ## 常用命令
 
-| npm 命令        | pnpm 对应的命令                                          |
-| --------------- | -------------------------------------------------------- |
-| `npm install`   | [`pnpm install`](https://pnpm.io/cli/install)            |
-| `npm i <pkg>`   | [`pnpm add `](https://pnpm.io/cli/add) -P 对应 npm 的 -S |
-| `npm run <cmd>` | [`pnpm `](https://pnpm.io/cli/run)                       |
-| `npm update`    | [`pnpm update`](https://pnpm.io/cli/update)              |
-| `npm uninstall` | [`pnpm remove`](https://pnpm.io/cli/remove)              |
+| npm 命令        | pnpm 对应的命令                               |
+| --------------- | --------------------------------------------- |
+| `npm install`   | [`pnpm install`](https://pnpm.io/cli/install) |
+| `npm i <pkg>`   | [`pnpm add `](https://pnpm.io/cli/add)        |
+| `npm run <cmd>` | [`pnpm `](https://pnpm.io/cli/run)            |
+| `npm update`    | [`pnpm update`](https://pnpm.io/cli/update)   |
+| `npm uninstall` | [`pnpm remove`](https://pnpm.io/cli/remove)   |
 
 #### 其他命令
 

@@ -468,6 +468,8 @@ export default class RefComponent extends Component {
 
 `current`对象第一个醒目的属性就是`value`，我们也能通过`value`获取到当前 dom 元素的值，**和原生的先获取 dom 再取 value 结果是相同的，也可以通过直接改变这个 value 来让页面发生改变**。同时该对象也具有其他原生的 dom 属性！
 
+ref 属性传递函数时，会在 commit **阶段创建真实 DOM 时执行 ref 指定的函数**，并将元素作为第一个参数传入，此时我们就可以利用它进行赋值以获取 DOM 元素或组件实例
+
 #### 函数式组件与 ref 
 
 **函数式组件不能直接赋予 ref 属性。**这点和 vue 一样，函数式组件只是一个接收参数的函数。最终渲染时才会编译成 dom，所以在一开始通过 ref 是拿不到 dom 的。直接给函数式组件 `ref` 属性也会被 react 警告。

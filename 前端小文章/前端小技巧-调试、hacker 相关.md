@@ -27,6 +27,52 @@ const removePropertyFn = (target, key) => {
 obj = removePropertyFn(obj, 'a')
 ```
 
+#### (0, obj.fn)() 的作用
+
+在看某些源码库时经常看到这样的代码，它的作用是什么呢？
+
+这样的写法称为**逗号运算符**，它会对每个操作数求值。像`(0, obj.fn)`，最终会返回 `obj.fn` 的值，类似于 `fn = obj.fn` 。这样一下就能看出它的作用了：**改变 this 的指向**。正常我们直接调用`obj.fn` ，fn 中的 this 指向 obj 对象，而通过逗号操作符这种方式来调用，可以让 this 指向全局对象。这在某些场景下非常简洁有效。
+
+#### setZeroTimeout 
+
+使用 `setTimeout(fn, 0)` 在各个浏览器上都会有最短时间限制，比如 chrome 现在是 2ms，还不够快。
+
+我们可以使用 postMessage 来模拟并达到接近这个最短时间的场景。执行100次该方法在 webkit 内核的浏览器上大约需要4～6ms，而 `setTimeout(fn, 0)` 的形式会话费近 1 秒的时间。
+
+他们都达到了不阻塞 Main Thread 的目的，让任务异步执行。
+
+```js
+(function() {
+  var timeouts = [];
+  var messageName = "zero-timeout-message";
+
+  // Like setTimeout, but only takes a function argument.  There's
+  // no time argument (always zero) and no arguments (you have to
+  // use a closure).
+  function setZeroTimeout(fn) {
+      timeouts.push(fn);
+      window.postMessage(messageName, "*");
+  }
+
+  function handleMessage(event) {
+      if (event.source == window && event.data == messageName) {
+          event.stopPropagation();
+          if (timeouts.length > 0) {
+              var fn = timeouts.shift();
+              fn();
+          }
+      }
+  }
+
+  window.addEventListener("message", handleMessage, true);
+
+  // Add the one thing we want added to the window object.
+  window.setZeroTimeout = setZeroTimeout;
+})();
+```
+
+
+
 ## Web API 相关
 
 #### storage 事件通信

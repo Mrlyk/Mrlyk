@@ -61,7 +61,11 @@ npm i ts-loader -D
 
 使用 ts 时，由于很多库都不是用 ts 写的（主流的基本都还是 js 写的），导致这些第三方的库无法进行类型推导。比如直接在 index.html 中通过 script 标签引入 jquery。在 ts 文件中使用`${'#head'}`时，ts 会报错表示不知道什么是`$`。这个时候就要使用**类声明语句**了。**在项目中一般把这些声明语句归类放在一个文件中，约定的就是`*.d.ts`这种类型定义文件。**
 
+需要配置正确的  `typeRoots` 或 `types` 选项，让 ts 能解析到这些文件。
+
 #### 类声明方法
+
+delare 用于声明一个全局变量、全局函数、全局模块等，它的作用是**告诉编译器这个变量、函数、或模块等已经在其他地方定义过了，不需要编译器再次检查他们的定义。**这种声明方法被称为“外部声明（External Declarations）”。
 
 - `declare var` 声明全局变量
 - `declare function`声明全局方法
@@ -219,7 +223,9 @@ Module._extensions['.ts'] = function(module, filename) {
 
 #### esno 直接运行 ts 文件
 
-官方文档：https://github.com/antfu/esno
+~~官方文档：https://github.com/antfu/esno~~
+
+esno 已经被集成到 tsx：https://github.com/esbuild-kit/tsx，可以参考这个文档
 
 **使用** 
 

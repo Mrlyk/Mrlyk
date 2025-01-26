@@ -89,6 +89,16 @@ npm 命令执行也具有 hooks，调用我们在 package.json 中定义的 scri
 
 接着要去使用这个包的地方执行 `npm link [pkg_name]` 即可
 
+**注意** 
+
+npm link 存在一些问题，如果本地开发谨慎使用，**更推荐使用 link 工具**，简单点可以直接`npx link [path/pkgA]`  的方式。使用该工具如果要移除 link 过来的包，重新执行`npm install` 即可。
+
+一些 `npm link` 的已知的问题如下：
+
+- npm link 一个本地不存在的包时，会默认去服务上下载下载并 link 过去，有时候不容易注意到
+- npm link 会组动执行包的 bin 字段中声明的命令，可能会带来意外的错误
+- 多次使用 npm link 命令链接包时，会删除之前的。即 `npm link a`，之后 `npm link b`，最终只有 b 会被留下。要两个都加进来需要` npm link a b` ，这点有时也很迷惑
+
 ##### npm unlink
 
 解除 npm link 的连接操作

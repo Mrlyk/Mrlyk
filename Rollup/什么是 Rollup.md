@@ -20,7 +20,7 @@ npx rollup -c rollup.config.js
 
 ## rollup 中消除副作用
 
-我们知道 tree-shaking会受到副作用的影响，使用weboack打包时，我们可以使用 effect 属性显式的声明哪些模块不具有副作用。
+我们知道 tree-shaking会受到副作用的影响，使用webpack打包时，我们可以使用 effect 属性显式的声明哪些模块不具有副作用。
 
 在 rollup 中依赖一个特殊的注释来做到这一点——`/*#__PURE__*/`
 

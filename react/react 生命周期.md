@@ -68,6 +68,8 @@ react 17 之后除了强烈不推荐使用这些钩子，也新增了两个钩�
 
 #### 初始化时的 life hooks
 
+**初始化时的 life hooks 在更新时不会执行！！！** 
+
 ##### componentDidMount 
 
 ```react
@@ -104,7 +106,7 @@ export default class LifeCycle extends Component {
 
 #### 运行时的 life hooks
 
-小括号内为执行顺序！
+小括号内为执行顺序！**运行时的 life hooks 在首次加载时不会执行！！！** 
 
 ##### componentDidUpdate（3）
 
@@ -220,7 +222,7 @@ Q ：这里提一点，为什么前面说不使用`setState`而直接使用`this
 
 ##### componentWillReceiveProps（1）
 
-这也是 react 16.9 之前的一个生命周期，现已被弃用。老的项目中可能互用，放在这里记录一下！
+这也是 react 16.9 之前的一个生命周期，现已被弃用。老的项目中可能会用，放在这里记录一下！
 
 该生命周期的最大特点是
 

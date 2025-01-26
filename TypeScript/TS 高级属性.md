@@ -56,7 +56,7 @@ abstract class Animal {
 }
 ```
 
-#### 接口
+#### interface 接口
 
 接口就是定义了的规范，用来约束子类，和抽象类很类似。
 
@@ -97,6 +97,17 @@ const obj2: myInterface = { // 当成类型声明使用
 ```
 
 实际使用中用哪个来定义对象都可以，但是更推荐使用接口以方便扩展。
+
+**如果要声明一个构造函数，需要具有 new 方法**
+
+```ts
+interface Person {
+  new (options: any): Person;
+  speak: () => void;
+}
+```
+
+有时候认为是要声明一个 `constructor` 方法，实际不是这样，这点要注意！
 
 **implements 使用类来实现一个接口**
 
@@ -288,6 +299,41 @@ console.log(per1.age) // 这是当我们访问私有属性的 _age 时相当于�
 
 存储器可以用于任何类型的属性，但用在 public 上没什么意义......
 
+##### public 等修饰器在 ts 中的简写作用
+
+在声明一个类时，我们通常需要外部传入一些属性并保存在实例上，如下
+
+```ts
+class Person {
+  name: string;
+  
+  constructor(name: string) {
+    this.name = name;
+  }
+}
+```
+
+这样写有一些繁琐，name 和 this.name 实际上是重复声明了 name 属性。ts 通过 public 等修饰器提供了一种简写方法，如下
+
+```ts
+class Person {
+  constructor(public name: string) {
+  }
+}
+
+// 编译结果 js
+class Person {
+  name;
+  constructor(name) {
+    this.name = name;
+  }
+}
+```
+
+除了`public`修饰符，构造方法的参数名只要有`private`、`protected`、`readonly`修饰符，都会自动声明对应修饰符的实例属性。
+
+
+
 #### 泛型
 
 当遇到类型不明确的变量时，可以使用泛型。如我们不确认后端返回的参数的类型时，就可以使用。
@@ -400,6 +446,34 @@ type Person = typeof MyArray[number] // typeof {name: 'Alice', age: 15} -> {name
 
 如果使用范型数组 `T[number]` 这样访问 `number` 属性，可以认为返回的是一个联合类型数组。
 
+## 类型收窄
+
+类型收窄介绍的官方文档：https://www.typescriptlang.org/docs/handbook/2/narrowing.html 
+
+当我们像这样声明一个变量时
+
+```ts
+const OBJ = {
+  name: 'yk',
+}
+```
+
+我们会认为 ts 将 OBJ.name 推断为 'yk' 类型，实际上它会被推断为 string 类型。有时候我们需要让 ts 认为这就是一个固定的值就是 'yk'，希望收窄这个类型。那应该怎么做呢？下面说明几种在 ts 中收窄类型的方法。
+
+#### as const 断言
+
+使用 as const 断言可以很好的解决上面的问题。
+
+```ts
+const OBJ = {
+  name: 'yk' as const,
+}
+```
+
+这样 name 就会被推断为具体的值而不是 string 类型了。
+
+官方文档中介绍了很多收窄类型的方法。比如用 typeof 做判断，用 === 值判断，使用 is 操作符等。详细的可以直接看官方文档。
+
 ## 协变与逆变
 
 **参数为父，返回值为子 —— 参数是逆变，返回值是协变**。如何理解呢，看下面的例子：
@@ -426,6 +500,12 @@ type Person = typeof MyArray[number] // typeof {name: 'Alice', age: 15} -> {name
 第三种：传入任意品种的狗都是`Animal`，所以参数没问题。但是返回值可能不是狗，而是其他动物，不符合`Dog`。所以也不是；
 
 第四种：同第三种参数没问题，返回值`Greyhound` 是狗的一种，也符合。所以他是`Dog -> Dog` 的子类型；
+
+## 函数重载
+
+在 ts 中，有时会有这样一种场景：我的一个函数参数不确定，但是后面要依据这个参数类型做不同的事情。所以泛型在这里也不
+
+
 
 ## 常用操作符
 

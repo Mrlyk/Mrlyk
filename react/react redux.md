@@ -307,7 +307,7 @@ redux 将数据存在内存中，所以刷新页面数据会丢失（vuex 也一
 
 下面是官方异步问题处理流程图：
 
-![redux async](https://cn.redux.js.org/assets/images/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif) 
+![ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg_2023/ReduxAsyncDataFlowDiagram-d97ff38a0f4da0f327163170ccc13e80.gif) 
 
 可以看到 redux 是依赖 redux-thunk 这个中间件去处理异步请求，中间件处理完成后再次 dispatch 通知 reducer 更改。
 

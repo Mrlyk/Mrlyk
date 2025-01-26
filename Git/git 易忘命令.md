@@ -2,6 +2,10 @@
 
 > 记录一下 git 偶尔会用到，经常忘记的命令
 
+在回忆下面的易忘命令之前，我们要牢记 git 的分区，工作区、暂存区、本地仓库、远程仓库之间的关系。
+
+![image-20231031161517279](https://liaoyk-markdown.oss-cn-hangzhou.aliyuncs.com/markdownImg_2023/image-20231031161517279.png?x-oss-process=image/resize,w_600,m_lfit) 
+
 [toc]
 
 #### commit 提交
@@ -41,11 +45,16 @@ git stash branch myBrach // 从 stash 创建分支
 git revert {log}  # 回退某一次 commit，会产生回退记录
 	-n // --no-commit 回退并且不提交
 	
+	
 git reset {log} # 回退到某个commit 并且放弃这次 commit 之后的所有提交，没有记录慎用
 	--hard // 回退并且放弃当前的更改
+# 如果想 reset 之后推送到远程可以强制推送，但是注意这种方式要保证分支的安全性，同步团队成员，更推荐使用 revert 命令
+git push --force origin <branch-name> # 强制推送
+	
 	
 git checkout HEAD~2 myfile.js # 回退单个文件到某个版本 ~ 波浪线表示该版本往前
 git checkout myfile.js # 撤销修改，恢复到最后一次提交状态，相当于 rollback
+
 
 # 因为 checkout 的本意是用来切换分支的，用 checkout 来回退文件很令人困惑，所以 git 在2.23+ 版本推出了 restore 命令来替代他的作用
 git restore -s stash@{0} -- <filename>
@@ -132,7 +141,7 @@ git remote set-url origin https://xxxxx
 
 #### 本地分支关联远程分支
 
-`git branch --set-upstream-to=origin/<branch> release`
+`git branch --set-upstream-to=origin/<branch> <local-branch>`
 
 #### git 子模块 git-submodule
 
@@ -172,3 +181,18 @@ git blame [filename] # 查看文件所有内容每一行的修改人
 git blame -L 20,30 [filename] # 查看文件 20 ～ 30 行的修改人
 ```
 
+#### git rm 删除文件
+
+git 分为暂存区和工作区，工作区是我们正在进行编码的地方，暂存区则是我们已经修改完的内容（git add）。
+
+使用该命令一般是用来删除暂存区中的文件，比如我们不小心将 .idea 这种本地配置文件提交到了远程，现在要将他们删掉就可以使用该命令。
+
+```shell
+git rm --cached [file]
+```
+
+如果没有 cache 参数就是直接从工作区中删除，和我们直接手动删没有区别？
+
+删除掉暂存区的文件不会对我们工作区产生影响，所以即使我们有一些更改了 .idea 本地编辑器配置，删除了暂存区中的内容也不会影响他们。
+
+删除后再使用 git commit 和 push 命令同步到远程仓库即可。

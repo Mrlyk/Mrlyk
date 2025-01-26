@@ -2,6 +2,10 @@
 
 [toc]
 
+## 传统属性
+
+这里记录的都是在 chrom < 100 之前都可用的属性，符合主流，基本可以随意使用。
+
 #### 多列布局（Multi-Column）
 
 ```css
@@ -137,4 +141,51 @@ function removeHint() {
 ```
 
 裁剪矩形的规则和设置`margin`、`padding`类似，也可以缩写为两个或者一个。
+
+## 新的工具
+
+这里记录的都是比较新的属性，大部分都是在 chrome > 100 之后才可用，使用时要注意兼容性。
+
+#### @container
+
+官方文档：https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_Container_Queries
+
+CSS 为了更好的响应式布局，推出了 @container 媒体查询。
+
+之前我们使用的媒体查询是相对于整个 viewport 视窗的，并不是很好用。
+
+@container 则是相对于容器的媒体查询，使用分为两步：
+
+1. 标记容器，容器查询会查找最近的容器，也可以使用`container-name` 来命名具体容器
+2. 使用，使用方式和 @media 一致
+
+下面是一个例子
+
+```html
+<style>
+.post {
+  container-type: inline-size;
+}
+
+  /* 默认的卡片标题样式 */
+.card h2 {
+  font-size: 1em;
+}
+
+/* 如果容器宽度大于 700px */
+@container (min-width: 700px) {
+  .card h2 {
+    font-size: 2em;
+  }
+}
+
+</style>
+
+<div class="post">
+  <div class="card">
+    <h2>卡片标题</h2>
+    <p>卡片内容</p>
+  </div>
+</div>
+```
 

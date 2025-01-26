@@ -56,6 +56,10 @@ object
 
 [`"exports"`](http://nodejs.cn/api/packages.html#exports) 字段提供了 [`"main"`](http://nodejs.cn/api/packages.html#main) 的替代方案，其中可以定义包主入口点，同时封装包，**防止除 [`"exports"`](http://nodejs.cn/api/packages.html#exports) 中定义的入口点之外的任何其他入口点**。 这种封装允许模块作者为他们的包定义一个公共接口。
 
+`"."`: 是包的主入口点，也就是当用户使用`require('your-package-name')`或`import 'your-package-name'`时，将会默认导入的文件。
+
+当用户想要导入此特定子模块时，他们可以使用`require('your-package-name/lib/a')`或`import 'your-package-name/lib/a'`。
+
 ```json
 "exports": {
   ".": {
@@ -63,6 +67,12 @@ object
   },
   "./lib/*.js": "./lib/*.js"
 }
+
+
+"exports": {
+  "import": "./index-module.js",
+  "require": "./index-require.cjs"
+},
 ```
 
 
@@ -263,3 +273,20 @@ test/umd/test.umd.js
 }
 ```
 
+#### resolutions 字段
+
+`resolutions` 字段是 `package.json` 文件中的一个字段，它的作用是用来解决依赖冲突问题，通常在使用 npm 或 Yarn 等包管理工具时会用到。
+
+当你的项目依赖的包中存在多个版本时，可能会出现依赖冲突，即不同包对同一个包的依赖版本不一致。这可能导致运行时错误或不稳定的行为。
+
+假如两个包 A、B 都依赖C包，但是 A 依赖 C@1.0，B 依赖 C@2.0，这时候按 npm 就不确定安装哪个版本可能产生问题。
+
+resolutions 字段则在这种情况发生时显示的安装的处理这种情况。
+
+```json
+"resolutions": {
+  "postcss": "^8.0.0",
+}
+```
+
+当 postcss 冲突时，使用 ^8.0.0 版本.
