@@ -59,7 +59,7 @@ import utils.index
 utils.index.make_pizza(16, 'water', 'hot')
 ```
 
-上面在目录 utils 下创建了一个模块，同时创建了一个空的 `__init__.py`文件让 python 识别。
+上面在目录 utils 下创建了一个模块，同时创建了一个空的 `__init__.py`文件让 python 识别。(python >= 3.3 以上不需要，但推荐加上)
 
 之后在模块中引入，然后就可以使用其中的方法了。
 

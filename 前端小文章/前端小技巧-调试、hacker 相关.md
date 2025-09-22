@@ -37,7 +37,7 @@ obj = removePropertyFn(obj, 'a')
 
 使用 `setTimeout(fn, 0)` 在各个浏览器上都会有最短时间限制，比如 chrome 现在是 2ms，还不够快。
 
-我们可以使用 postMessage 来模拟并达到接近这个最短时间的场景。执行100次该方法在 webkit 内核的浏览器上大约需要4～6ms，而 `setTimeout(fn, 0)` 的形式会话费近 1 秒的时间。
+我们可以使用 postMessage 来模拟并达到接近这个最短时间的场景。执行100次该方法在 webkit 内核的浏览器上大约需要4～6ms，而 `setTimeout(fn, 0)` 的形式会花费近 1 秒的时间。
 
 他们都达到了不阻塞 Main Thread 的目的，让任务异步执行。
 

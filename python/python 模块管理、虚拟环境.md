@@ -1,6 +1,12 @@
-# python 模块管理工具
+# python 模块管理工具、虚拟环境、版本管理工具
 
 前端常用 npm 作为包管理工具。python 应用最广泛的则是 pip 和 anaconda。
+
+同时 conda、pyenv 和 venv 可以用来创建虚拟环境。
+
+> 为什么需要虚拟环境？
+>
+> 系统为了防止用户用pip修改可能被系统包管理器管理的包，从而引发冲突，所以会阻止直接使用pip安装。特别是像Debian/Ubuntu等系统的最新版本中，Python环境默认被标记为外部管理，导致错误。
 
 [toc]
 
@@ -167,7 +173,7 @@ conda env remove -n env_name
 # 安装package
 conda install -n myenv numpy
 # 如果不用-n指定环境名称，则被安装在当前活跃环境
-# 也可以通过-c指定通过某个channel安装
+# 也可以通过-c指定通过某个channel安装 channel 相当于 npm 中的私域，可以优先指定私域名安装
 ```
 
 因为 conda 可以方便的创建虚拟环境，所以当我们有这方便的需求时最好就是用他。
@@ -180,5 +186,68 @@ conda install -n myenv numpy
 
 ```shell
 conda config -set auto_activate_base false
+```
+
+## venv (vitural env)
+
+python3.3 自带的虚拟环境创建工具。
+
+特性：小巧轻便。
+
+#### 使用方法
+
+```bash
+# 创建虚拟环境（例如名为 myenv）
+python -m venv myenv
+
+# 激活虚拟环境
+source myenv/bin/activate  # Linux/macOS
+# 或 Windows: myenv\Scripts\activate
+
+# 在虚拟环境中安装包
+pip install <包名>
+
+# 退出虚拟环境
+deactivate
+```
+
+## pyenv
+
+类似于 node  的 nvm，既可以创建虚拟环境也可以管理 python 版本。
+
+在 mac 中安装 pyenv 可以直接使用 brew 包管理工具。
+
+```shell
+# 安装 Python 3.10
+pyenv install 3.10.14
+
+# 安装 pyenv-virtualenv 插件
+brew install pyenv-virtualenv
+
+# 安装后，重启终端或运行：
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+# 创建并激活虚拟环境
+pyenv virtualenv 3.10.14 encode-demo-env
+pyenv activate encode-demo-env
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+## miniforge3 (aconda)
+
+在商业环境下使用 aconda 会有法律风险，可以使用本开源软件对 conda 进行平替。
+
+官方文档：https://conda-forge.org/miniforge/
+
+安装完成后需要配置环境变量
+
+```bash
+# 配置 conda-forge ,如果 conda 不行还可以用 /manba.sh
+if [ -f $HOME/miniforge3/etc/profile.d/conda.sh ]; then
+    . $HOME/miniforge3/etc/profile.d/conda.sh
+fi
 ```
 
