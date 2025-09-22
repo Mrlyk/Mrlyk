@@ -174,7 +174,7 @@
   - [python 实践——小游戏.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E5%AE%9E%E8%B7%B5%E2%80%94%E2%80%94%E5%B0%8F%E6%B8%B8%E6%88%8F.md)  
   - [python 常用 API.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E5%B8%B8%E7%94%A8%20API.md)  
   - [python 模块化、类、文件和异常.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E6%A8%A1%E5%9D%97%E5%8C%96%E3%80%81%E7%B1%BB%E3%80%81%E6%96%87%E4%BB%B6%E5%92%8C%E5%BC%82%E5%B8%B8.md)  
-  - [python 模块管理工具pip & conda.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7pip%20&%20conda.md)  
+  - [python 模块管理、虚拟环境.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86%E3%80%81%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83.md)  
   - [python 测试函数.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0.md)  
   - [python 程序打包.md](https://github.com/Mrlyk/Mrlyk/blob/master/python/python%20%E7%A8%8B%E5%BA%8F%E6%89%93%E5%8C%85.md)  
   - **yolo**  
@@ -292,7 +292,6 @@
     - [vue-cli 实现探究.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/vue-cli%20%E5%AE%9E%E7%8E%B0%E6%8E%A2%E7%A9%B6.md)  
     - [从0开始的脚手架.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E7%9A%84%E8%84%9A%E6%89%8B%E6%9E%B6.md)  
     - [搭建 vue 开发浏览器插件脚手架实践.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%20vue%20%E5%BC%80%E5%8F%91%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6%E8%84%9A%E6%89%8B%E6%9E%B6%E5%AE%9E%E8%B7%B5.md)  
-    - [搭建简单的 vue2 项目脚手架.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E6%90%AD%E5%BB%BA%E7%AE%80%E5%8D%95%E7%9A%84%20vue2%20%E9%A1%B9%E7%9B%AE%E8%84%9A%E6%89%8B%E6%9E%B6.md)  
     - [脚手架搭建思路.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/%E5%89%8D%E7%AB%AF%E8%84%9A%E6%89%8B%E6%9E%B6/%E8%84%9A%E6%89%8B%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%80%9D%E8%B7%AF.md)  
 - **又是一个前端小知识**  
   - [AbortController 中断一切.md](https://github.com/Mrlyk/Mrlyk/blob/master/%E5%8F%88%E6%98%AF%E4%B8%80%E4%B8%AA%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%9F%A5%E8%AF%86/AbortController%20%E4%B8%AD%E6%96%AD%E4%B8%80%E5%88%87.md)  
