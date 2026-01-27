@@ -274,7 +274,7 @@ server {
   location /api4 {
     proxy_pass http://localhost:8080/;
   }
-  # http://localhost/api4/xxx -> http://localhost:8080//xxx，请注意这里的双斜线，好好分析一下。
+  # http://localhost/api4/xxx -> http://localhost:8080//xxx，请注意这里的双斜线，好好分析一下。请求 URI 为 /api4/xxx
 
   location /api5/ {
     proxy_pass http://localhost:8080/haha;
@@ -298,6 +298,6 @@ server {
 }
 ```
 
-`proxy_pass`根据是否是 URI 来决定整个替换还是选择加在前面，**只要不是纯净的协议+主机+端口，后面带有路径的一律都是 URI** 
+`proxy_pass`根据是否是 URI 来决定替换（是）还是选择加在前面（否），**只要不是纯净的协议+主机+端口，后面带有路径的一律都是 URI** 。如果是 URI ——执行替换，最终转发路径 = proxy_pass路径 + (请求URI - location路径)。
 
 由上面的规律可以看出，要么`location`和`proxy_pass`都带`\`，要么都别带。不然路径代理容易出问题。

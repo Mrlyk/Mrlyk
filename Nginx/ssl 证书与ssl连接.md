@@ -34,7 +34,7 @@ OpenSSL 的常见用法有：
 - 公钥加密文件：`openssl rsautl -encrypt -in input.file -inkey pubkey.pem -pubin -out output.file`
 - 私钥解密文件：`openssl rsautl -decrypt -in input.file -inkey key.pem -out output.file`
 - 生成证书请求：`openssl req -new -key key.pem -out req.csr`
-- 生成自签名证书：`openssl x509 -req -in req.csr -signkey key.pem -out cert.pem`
+- 生成自签名证书：`openssl req -x509 -in req.csr -signkey key.pem -out cert.pem`
 - 计算文件的 MD5 摘要：`openssl dgst -md5 input.file`
 - 生成用户密码：`openssl passwd -crypt -salt xx password`
 ```
