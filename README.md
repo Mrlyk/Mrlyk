@@ -18,7 +18,7 @@
 ---
 
 - 🐎 **superharness**: https://github.com/Mrlyk/superharness 结合 superpowers 和 trellis 做的 AI Coding Harness 工具～欢迎体验 star
-- 🔧 **Claude Plugin**: https://github.com/Mrlyk/cc-plugins Claude Code 插件，全自动 commit 插件～
+- 🔧 **jev-browser**: [https://github.com/Mrlyk/cc-plugins](https://github.com/Mrlyk/jev-browser) 基于决策模型 Jev 的浏览器操作工具
 - 🧐 **Agent Skills**: https://github.com/Mrlyk/SKILLS 收藏的 SKILLS，强推 ask-me 和 grill-me
 
 欢迎交流 AI Coding、AI Harness 以及任何有趣的 Coding 想法！
